@@ -17,7 +17,7 @@ public class World{
     public void CreateWorld()
     {
         GameObject thisWorld = MonoBehaviour.Instantiate(myWorld);
-        thisWorld.transform.localScale = new Vector3(mySize, 0, mySize);
+        thisWorld.transform.localScale = new Vector3(mySize, mySize, mySize);
     }
 
 }
