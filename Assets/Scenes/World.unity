@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374fd14e4b21a494e95d19bf12319144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  creatures: []
   worldClimate: 0
   worldSize: {x: 0, y: 0, z: 0}
   obstacleAmount: 0
@@ -318,8 +319,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1453010157}
   - component: {fileID: 1453010156}
-  - component: {fileID: 1453010155}
   - component: {fileID: 1453010154}
+  - component: {fileID: 1453010155}
   m_Layer: 0
   m_Name: Creature
   m_TagString: Creature
@@ -361,18 +362,29 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1453010155
-BoxCollider:
+--- !u!114 &1453010155
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1453010153}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac20569ef86cd4a4fb0104eccdc59c92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gender: 
+  form: 
+  health: 0
+  strength: 0
+  speed: 0
+  hunger: 0
+  pride: 0
+  carcassValue: 0
+  age: 0
+  meshRend: {fileID: 0}
+  femMat: {fileID: 2100000, guid: cb75b38e92eca4d43ab029fcbb6b8e9c, type: 2}
+  malMat: {fileID: 2100000, guid: 6f56104066b9349428644acad198e72c, type: 2}
 --- !u!33 &1453010156
 MeshFilter:
   m_ObjectHideFlags: 0
