@@ -1,4 +1,4 @@
-Mika van der Zanden
+Mika van der Zanden & Daan Dekkers
 
 # CodeOrganizationChallenge
 Assignment for 2nd years Code Organization Challenge. 
