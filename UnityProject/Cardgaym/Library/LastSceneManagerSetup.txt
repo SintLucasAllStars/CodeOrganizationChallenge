@@ -1,8 +1,0 @@
-sceneSetups:
-<<<<<<< HEAD
-- path: Assets/_scenes/mainScene.unity
-=======
-- path: Assets/_scenes/deckEditor.unity
->>>>>>> 363c1ebaea3992cf6cec977c08775a8ca913a544
-  isLoaded: 1
-  isActive: 1
