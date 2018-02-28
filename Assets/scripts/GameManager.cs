@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		cards = new List<Card>();
 		for (int i = 0; i < 30; i++) {
-			cards.Add (new Card (Random.Range (1, 5), transform.position, prefab, Random.Range (0, 4), 0));
+			cards.Add (new Card (Random.Range (1, 7), this.transform.position, prefab, Card.types.Air, Card.state.Deck));
 		}
 		
 	}
