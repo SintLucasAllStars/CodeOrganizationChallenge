@@ -29,6 +29,8 @@ public class Creature : MonoBehaviour {
 	public Mesh sphere;
 	public Mesh cylinder;
 
+	private Vector3 randMov;
+
 
 	public void Start(){
 		
@@ -72,16 +74,22 @@ public class Creature : MonoBehaviour {
 		age = thisDNA.age;
 		#endregion
 
+		StartCoroutine (randDirMov());
 
 	}
 
 	public void Update(){
 
-		#region Movement
+		transform.Translate(Vector3.forward * speed / 20f * Time.deltaTime);
 
-		transform.Translate(Vector3.forward * speed / 20 * Time.deltaTime);
+	}
 
-		#endregion
+	public IEnumerator randDirMov(){
+
+		randMov = new Vector3 (0, 1f + Random.Range(-0.5f,0.5f),0);
+		transform.Rotate (randMov * Time.deltaTime);
+		yield return new WaitForSeconds (Random.Range (0.05f, 5f));
+		StartCoroutine (randDirMov());
 
 	}
 
