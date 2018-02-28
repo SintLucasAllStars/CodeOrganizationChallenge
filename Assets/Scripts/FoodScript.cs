@@ -26,7 +26,7 @@ public class FoodScript : MonoBehaviour {
         if (foodType == "Tree")
         {
             thisMaterial.material = treeMat;
-            transform.localScale = new Vector3(0.5f, 1.25f, 0.5f);
+            transform.localScale = new Vector3(0.5f, 2, 0.5f);
         }
 
         if (foodType == "Melon")
