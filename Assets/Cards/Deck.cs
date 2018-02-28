@@ -5,11 +5,6 @@ public class Deck
 {
     private List<Card> cards;
 
-    public Deck()
-    {
-        cards = new List<Card>();
-    }
-
     private List<Card> GetSuitableCards(Card playCard)
     {
         List<Card> returnList = new List<Card>();
@@ -45,6 +40,11 @@ public class Deck
             cards.Remove(card);
             CardManager.GetCardManager().SetCurrentPlayCards(card);
         }
+    }
+
+    public bool AllowedCard(Card card)
+    {
+        return GetSuitableCards(CardManager.GetCardManager().GetCurrentPlayCard()).Contains(card);
     }
     
 }

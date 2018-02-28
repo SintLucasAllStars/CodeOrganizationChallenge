@@ -21,18 +21,23 @@
 
     public Card Combine(Card combineCard)
     {
-        CardManager.GetCardManager().MarkCardAvailable(this);
-        CardManager.GetCardManager().MarkCardAvailable(combineCard);
+        Card returnCard;
         if (cardType == combineCard.GetCardType())
         {
-            return CardManager.GetCardManager().FindCard(cardType);
+            returnCard = CardManager.GetCardManager().FindCard(cardType);
         }
-
-        if (cardNumber == combineCard.GetCardNumber())
+        else if (cardNumber == combineCard.GetCardNumber())
         {
-            return CardManager.GetCardManager().FindCard(cardNumber);
+            returnCard = CardManager.GetCardManager().FindCard(cardNumber);
         }
-        return CardManager.GetCardManager().GetRandomAvailableCard();
-    }
+        else
+        {
+            returnCard = CardManager.GetCardManager().GetRandomAvailableCard();
+        }
 
+        CardManager.GetCardManager().MarkCardAvailable(this);
+        CardManager.GetCardManager().MarkCardAvailable(combineCard);
+        return returnCard;
+    }
+    
 }
