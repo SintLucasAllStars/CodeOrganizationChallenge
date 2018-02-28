@@ -47,15 +47,20 @@ public class Creature : MonoBehaviour {
 		if (form == "A") {
 			meshFilter.mesh = cube;
 			gameObject.AddComponent<BoxCollider> ();
+			gameObject.GetComponent<MeshCollider> ().convex = true;
 		}
 		if (form == "B") {
 			meshFilter.mesh = sphere;
 			gameObject.AddComponent<SphereCollider> ();
+			gameObject.GetComponent<MeshCollider> ().convex = true;
 		}
-		if (form == "V") {
+		if (form == "C") {
+			transform.position = new Vector3 (transform.position.x, transform.position.y + 0.5f, transform.position.z);
 			meshFilter.mesh = cylinder;
 			gameObject.AddComponent<MeshCollider> ();
+			gameObject.GetComponent<MeshCollider> ().convex = true;
 		}
+
 
 		health = thisDNA.health;
 		strength = thisDNA.strength;
@@ -65,12 +70,6 @@ public class Creature : MonoBehaviour {
 		carcassValue = thisDNA.carcassValue;
 		age = thisDNA.age;
 
-	}
-
-	public void Update(){
-	
-
-	
 	}
 
 }

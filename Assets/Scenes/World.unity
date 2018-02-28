@@ -305,10 +305,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creatures: []
-  worldClimate: 0
+  worldClimate: 2
   obstacleAmount: 0
   foodAmount: 0
-  worldSize: 100
+  worldSize: 50
   worldAge: 0
 --- !u!1001 &1255338464
 Prefab:
