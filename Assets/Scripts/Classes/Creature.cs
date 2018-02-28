@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Creature : MonoBehaviour {
 
-	public DNA thisDNA;
+	private DNA thisDNA;
 
+	[Header("Set this type")]
+	[Tooltip("Set value to A, B or C to generate accordingly")]
 	public string type;
 
+	[Header("Values generated from DNA")]
+	[Tooltip("Do not change these values - this is generated from DNA")]
 	public string gender;
 	public string form;
-
 	public float health;
 	public float strength;
 	public float speed;
@@ -18,27 +21,38 @@ public class Creature : MonoBehaviour {
 	public float pride;
 	public float carcassValue;
 	public float age;
-
 	public MeshRenderer meshRend;
 	public Material femMat;
 	public Material malMat;
+	public MeshFilter meshFilter;
+	public Mesh cube;
+	public Mesh sphere;
+	public Mesh cylinder;
 
 	public void Start(){
 		
 		meshRend = GetComponent<MeshRenderer> ();
+		meshFilter = GetComponent<MeshFilter> ();
 
 		thisDNA = new DNA (type);
 
 		gender = thisDNA.thisGender;
-
 		if (gender == "male") {
 			meshRend.material = malMat;
 		}else {
 			meshRend.material = femMat;
 		}
 
-
 		form = thisDNA.thisForm;
+		if (form == "A") {
+			meshFilter.mesh = cube;
+		}
+		if (form == "B") {
+			meshFilter.mesh = sphere;
+		}
+		if (form == "V") {
+			meshFilter.mesh = cylinder;
+		}
 
 		health = thisDNA.health;
 		strength = thisDNA.strength;
