@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deck : MonoBehaviour {
+[System.Serializable]
+public class Deck {
 	string deckName;
 	public List<Card> cardList;
 	string owner;
@@ -19,4 +20,10 @@ public class Deck : MonoBehaviour {
 		cardList.Add(new Card(name,image,effect,type,attribute,mnType,sType,tType,mAtk,mDef,state,ow));
 	}
 
+	public string GetDeckName(){
+		return deckName;
+	}
+	public string GetDeckOwner(){
+		return owner;
+	}
 }

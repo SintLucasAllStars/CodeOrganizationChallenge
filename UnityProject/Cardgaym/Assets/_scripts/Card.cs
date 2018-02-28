@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Card {
 	string cardName;
 	GameObject cardImage;
 	string cardEffect;
 	public enum cardType {monster, spell, trap};
 	cardType myCardType;
-	public enum cardAttribute {dark, divine, earth, fire, light, water,wind};
+	public enum cardAttribute {dark, divine, earth, fire, light, water,wind,none};
 	cardAttribute myCardAttribute;
-	public enum monsterType {aqua, beast, beastWarrior, dinosaur, divineBeast, dragon, fairy, fiend, fish, insect, machine, plant, psychic, pyro, reptile, rock, seaSerpent, spellcaster, thunder, warrior, wingedBeast, wyrm, zombie};
+	public enum monsterType {none,aqua, beast, beastWarrior, dinosaur, divineBeast, dragon, fairy, fiend, fish, insect, machine, plant, psychic, pyro, reptile, rock, seaSerpent, spellcaster, thunder, warrior, wingedBeast, wyrm, zombie};
 	monsterType myMonsterType;
-	public enum spellType {normal, continous, quickPlay, fieldSpell, equip };
+	public enum spellType {none,normal, continous, quickPlay, fieldSpell, equip };
 	spellType mySpellType;
-	public enum trapType {normal, continous, counter, equip};
+	public enum trapType {none,normal, continous, counter, equip};
 	trapType myTrapType;
 	int monsterAttack;
 	int monsterDefense;
