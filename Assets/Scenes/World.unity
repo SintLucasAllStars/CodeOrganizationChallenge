@@ -310,7 +310,7 @@ MonoBehaviour:
   foodAmount: 0
   worldSize: 50
   worldAge: 0
-  randomFood: {fileID: 0}
+  randomFood: {fileID: 1688276171670094, guid: 44e0b0661ddc25747bc018d4ba7b4433, type: 2}
 --- !u!1001 &1255338464
 Prefab:
   m_ObjectHideFlags: 0
@@ -424,7 +424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac20569ef86cd4a4fb0104eccdc59c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: A
+  type: C
   gender: 
   form: 
   health: 0
