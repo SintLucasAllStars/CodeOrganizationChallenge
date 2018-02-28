@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
+- path: Assets/Bla Bla.unity
+=======
 - path: Assets/_scenes/mainScene.unity
+>>>>>>> e39e4409572defcbcd25eb77c09ca304ab11d060
   isLoaded: 1
   isActive: 1
