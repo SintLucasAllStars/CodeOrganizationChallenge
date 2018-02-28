@@ -73,6 +73,10 @@ public class Creature : MonoBehaviour {
 		age = thisDNA.age;
 		#endregion
 
+		// Set initial rotation to a random degree (else they all walk in the same direction at start)
+		gameObject.transform.eulerAngles = new Vector3 (0,Random.Range(0,361),0);
+
+		// This will become a proper movement function at some point, sorry David/Luc i'm  too lazy to fix it right now. :(
 		StartCoroutine (randMovement ());
 
 	}
