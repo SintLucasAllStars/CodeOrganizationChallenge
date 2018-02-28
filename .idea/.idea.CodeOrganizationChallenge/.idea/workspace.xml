@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9acfd8b-9b04-4833-96f4-83895c1bf8e1" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Cards/Card.cs" afterPath="$PROJECT_DIR$/Assets/Cards/Card.cs" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cards/Deck.cs" afterPath="$PROJECT_DIR$/Assets/Cards/Deck.cs" />
-    </list>
+    <list default="true" id="a9acfd8b-9b04-4833-96f4-83895c1bf8e1" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +14,8 @@
       <file leaf-file-name="Card.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Cards/Card.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+            <state relative-caret-position="239">
+              <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
               <folding>
                 <marker date="1519822605449" expanded="true" signature="17:1017" ph="{...}" />
                 <marker date="1519822605449" expanded="true" signature="130:214" ph="{...}" />
@@ -209,12 +206,12 @@
       <option name="presentableId" value="Default" />
       <updated>1519813485582</updated>
       <workItem from="1519813486861" duration="2531000" />
-      <workItem from="1519816044669" duration="4297000" />
+      <workItem from="1519816044669" duration="4378000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6828000" />
+    <option name="totallyTimeSpent" value="6909000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -538,8 +535,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Cards/Card.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        <state relative-caret-position="239">
+          <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding>
             <marker date="1519822605449" expanded="true" signature="17:1017" ph="{...}" />
             <marker date="1519822605449" expanded="true" signature="130:214" ph="{...}" />
