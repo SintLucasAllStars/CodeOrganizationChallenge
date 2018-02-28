@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Creature : MonoBehaviour {
 
+	#region DNA
+
 	private DNA thisDNA;
 
-	[Header("Set this type")]
+	[Header("Set this type - A, B or C")]
 	[Tooltip("Set value to A, B or C to generate accordingly")]
 	public string type;
 
-	[Header("Values generated from DNA")]
+	[Header("DNA Generated Values - DON'T EDIT THESE")]
 	[Tooltip("Do not change these values - this is generated from DNA")]
 	public string gender;
 	public string form;
@@ -29,6 +31,7 @@ public class Creature : MonoBehaviour {
 	public Mesh sphere;
 	public Mesh cylinder;
 
+	#endregion
 
 	public void Start(){
 		
@@ -49,12 +52,10 @@ public class Creature : MonoBehaviour {
 		if (form == "A") {
 			meshFilter.mesh = cube;
 			gameObject.AddComponent<BoxCollider> ();
-			gameObject.GetComponent<MeshCollider> ().convex = true;
 		}
 		if (form == "B") {
 			meshFilter.mesh = sphere;
 			gameObject.AddComponent<SphereCollider> ();
-			gameObject.GetComponent<MeshCollider> ().convex = true;
 		}
 		if (form == "C") {
 			transform.position = new Vector3 (transform.position.x, transform.position.y + 0.5f, transform.position.z);
