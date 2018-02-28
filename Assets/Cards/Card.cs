@@ -21,15 +21,18 @@
 
     public Card Combine(Card combineCard)
     {
+        CardManager.GetCardManager().MarkCardAvailable(this);
+        CardManager.GetCardManager().MarkCardAvailable(combineCard);
         if (cardType == combineCard.GetCardType())
         {
-            combineType = cardType;
+            return CardManager.GetCardManager().FindCard(cardType);
         }
 
         if (cardNumber == combineCard.GetCardNumber())
         {
-            combineNumber = cardNumber;
+            return CardManager.GetCardManager().FindCard(cardNumber);
         }
+        return CardManager.GetCardManager().GetRandomAvailableCard();
     }
 
 }
