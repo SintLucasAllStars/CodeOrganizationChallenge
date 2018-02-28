@@ -36,6 +36,6 @@ A system to manage an evoutionary simulation.
 * The world has obstacles and food. All Creatures can detect food when they get close enough to it. What they do about it depends on their DNA.
 
 ## The deadline
-All pull requests should be sent before the end of Friday the 2nd of February 2018.
+All pull requests should be sent before the end of Friday the 2nd of March 2018.
 
 
