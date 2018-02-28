@@ -45,7 +45,7 @@ public class DNA {
 
 		//Checks if thisForm is equal to one of the forms, creates values accordingly
 		if (thisForm == "A") {
-			thisGender = gender [Random.Range (0, 1)].ToString ();
+			thisGender = gender [Random.Range (0, 2)].ToString ();
 			health = Random.Range (61, 60);
 			strength = Random.Range (81, 101);
 			speed = Random.Range (40, 61);
