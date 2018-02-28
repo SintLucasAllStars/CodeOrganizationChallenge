@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Puzzle {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public string question;
+    public string answer;
+
+    public Puzzle(string question, string answer)
+    {
+        this.question = question;
+        this.answer = answer;
+    }
 }
