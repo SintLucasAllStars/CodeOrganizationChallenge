@@ -72,6 +72,7 @@ public class Creature : MonoBehaviour {
 		age = thisDNA.age;
 		#endregion
 
+		StartCoroutine (randMovement ());
 
 	}
 
@@ -82,6 +83,14 @@ public class Creature : MonoBehaviour {
 		transform.Translate(Vector3.forward * speed / 20 * Time.deltaTime);
 
 		#endregion
+
+	}
+
+	public IEnumerator randMovement(){
+
+		transform.Rotate (0, Random.Range (-50f, 50f), 0);
+		yield return new WaitForSeconds(Random.Range(0.5f,1.5f));
+		StartCoroutine (randMovement ());
 
 	}
 

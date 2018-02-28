@@ -19,7 +19,6 @@ public class DNA {
 	public float carcassValue;
 	public float age;
 
-
 	// True Random
 	public DNA(){
 
