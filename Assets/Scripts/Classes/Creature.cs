@@ -46,12 +46,15 @@ public class Creature : MonoBehaviour {
 		form = thisDNA.thisForm;
 		if (form == "A") {
 			meshFilter.mesh = cube;
+			gameObject.AddComponent<BoxCollider> ();
 		}
 		if (form == "B") {
 			meshFilter.mesh = sphere;
+			gameObject.AddComponent<SphereCollider> ();
 		}
 		if (form == "V") {
 			meshFilter.mesh = cylinder;
+			gameObject.AddComponent<MeshCollider> ();
 		}
 
 		health = thisDNA.health;
