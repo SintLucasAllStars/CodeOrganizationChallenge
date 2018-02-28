@@ -1,3 +1,7 @@
+# Team and Project
+Tijn van den Broek & Jorrit Slaats
+Evolution
+
 # CodeOrganizationChallenge
 Assignment for 2nd years Code Organization Challenge. 
 
