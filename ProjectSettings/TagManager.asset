@@ -8,6 +8,7 @@ TagManager:
   - World Manager
   - World Master
   - Creature
+  - Food
   layers:
   - Default
   - TransparentFX
