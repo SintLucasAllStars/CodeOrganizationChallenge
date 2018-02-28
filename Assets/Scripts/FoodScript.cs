@@ -40,8 +40,4 @@ public class FoodScript : MonoBehaviour {
             transform.localScale = new Vector3(2, 0.5f, 2);
         }
     }
-	
-	void Update () {
-		
-	}
 }

@@ -15,13 +15,15 @@ public class WorldManager : MonoBehaviour {
     public float worldSize;
     public float worldAge;
 
+    public GameObject randomFood;
+
     public void Start()
     {
         GameObject.Find("Ground").transform.localScale = new Vector3(worldSize/10, 1, worldSize/10);                      //Make the world the size it is assigned to be
 
-       /* for (int i = 0; i < length; i++)
+        for (int i = 0; i < Mathf.RoundToInt(worldSize/5); i++)
         {
-
-        }*/
+            Instantiate(randomFood, new Vector3(Random.Range(-worldSize/2, worldSize/2), 0, Random.Range(-worldSize/2, worldSize/2)), Quaternion.identity);
+        }
     }
 }
