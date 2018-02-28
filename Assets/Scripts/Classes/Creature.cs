@@ -29,8 +29,10 @@ public class Creature : MonoBehaviour {
 	public Mesh sphere;
 	public Mesh cylinder;
 
+
 	public void Start(){
 		
+		#region OOP setup
 		meshRend = GetComponent<MeshRenderer> ();
 		meshFilter = GetComponent<MeshFilter> ();
 
@@ -61,7 +63,6 @@ public class Creature : MonoBehaviour {
 			gameObject.GetComponent<MeshCollider> ().convex = true;
 		}
 
-
 		health = thisDNA.health;
 		strength = thisDNA.strength;
 		speed = thisDNA.speed;
@@ -69,6 +70,18 @@ public class Creature : MonoBehaviour {
 		pride = thisDNA.pride;
 		carcassValue = thisDNA.carcassValue;
 		age = thisDNA.age;
+		#endregion
+
+
+	}
+
+	public void Update(){
+
+		#region Movement
+
+		transform.Translate(Vector3.forward * speed / 20 * Time.deltaTime);
+
+		#endregion
 
 	}
 
