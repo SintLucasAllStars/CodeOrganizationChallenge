@@ -24,7 +24,7 @@ public class WorldManager : MonoBehaviour {
 
         for (int i = 0; i < Mathf.RoundToInt(worldSize/foodMultiplier); i++)                                                                                    //repeat the spawn depending on the size of the map and the food multiplier
         {
-            Instantiate(randomFood, new Vector3(Random.Range(-worldSize/2, worldSize/2), 0, Random.Range(-worldSize/2, worldSize/2)), Quaternion.identity);     //Spawn a random food on a random location on the world
+            Instantiate(randomFood, new Vector3(Random.Range(-worldSize/2- -worldSize/10, worldSize/2 - worldSize / 10), 0, Random.Range(-worldSize/2 + worldSize / 10, worldSize/2 - worldSize / 10)), Quaternion.identity);     //Spawn a random food on a random location on the world
         }
     }
 }
