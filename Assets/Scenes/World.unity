@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac20569ef86cd4a4fb0104eccdc59c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 
+  type: C
   gender: 
   form: 
   health: 0
@@ -428,6 +428,10 @@ MonoBehaviour:
   meshRend: {fileID: 0}
   femMat: {fileID: 2100000, guid: cb75b38e92eca4d43ab029fcbb6b8e9c, type: 2}
   malMat: {fileID: 2100000, guid: 6f56104066b9349428644acad198e72c, type: 2}
+  meshFilter: {fileID: 0}
+  cube: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  sphere: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  cylinder: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1453010156
 MeshFilter:
   m_ObjectHideFlags: 0

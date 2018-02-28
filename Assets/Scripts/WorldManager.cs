@@ -14,6 +14,7 @@ public class WorldManager : MonoBehaviour {
 
     public float worldSize;
     public float worldAge;
+<<<<<<< HEAD:Assets/Scripts/WorldManager.cs
 
     public void Start()
     {
@@ -25,3 +26,6 @@ public class WorldManager : MonoBehaviour {
         }*/
     }
 }
+=======
+}
+>>>>>>> d73339753f555d0cde17f3b097ac5de73662595b:Assets/Scripts/Classes/WorldManager.cs
