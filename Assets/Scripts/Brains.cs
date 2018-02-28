@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test : MonoBehaviour {
-
-	public int test;
-
+public class Brains : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
