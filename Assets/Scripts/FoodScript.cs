@@ -27,17 +27,20 @@ public class FoodScript : MonoBehaviour {
         {
             thisMaterial.material = treeMat;
             transform.localScale = new Vector3(0.5f, 2, 0.5f);
+            Destroy(this.gameObject, Random.Range(25,30));
         }
 
         if (foodType == "Melon")
         {
             thisMaterial.material = melonMat;
+            Destroy(this.gameObject, Random.Range(20, 25));
         }
 
         if (foodType == "Bush")
         {
             thisMaterial.material = bushMat;
             transform.localScale = new Vector3(2, 0.5f, 2);
+            Destroy(this.gameObject, Random.Range(15, 20));
         }
     }
 }

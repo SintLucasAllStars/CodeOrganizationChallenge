@@ -14,6 +14,7 @@ public class WorldManager : MonoBehaviour
 
     public int obstacleAmount;
 
+    public float timeScale;
     public float worldSize;
     public float worldAge;
     [Range(2, 12)]
@@ -24,6 +25,7 @@ public class WorldManager : MonoBehaviour
 
     public void Start()
     {
+        Time.timeScale = timeScale;
 
         StartCoroutine(FoodSpawner());
 
@@ -40,7 +42,7 @@ public class WorldManager : MonoBehaviour
 
     public IEnumerator FoodSpawner()
     {
-        yield return new WaitForSeconds(foodMultiplier * 2);
+        yield return new WaitForSeconds(foodMultiplier * 1.5f);
         Instantiate(randomFood, new Vector3(Random.Range(-worldSize / 2 - -worldSize / 10, worldSize / 2 - worldSize / 10), 0, Random.Range(-worldSize / 2 + worldSize / 10, worldSize / 2 - worldSize / 10)), Quaternion.identity);
         StartCoroutine(FoodSpawner());
     }
