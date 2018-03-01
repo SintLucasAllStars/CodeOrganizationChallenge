@@ -1,6 +1,6 @@
 # Team and Project
 Tijn van den Broek & Jorrit Slaats
-* Evolution
+* Evolution - It's like Spore but with more bugs and less features!
 
 ## Instructions
 Set the modifiers in the World Manager to make evolution and probably murder happen. Different modifiers may result in different outcomes!
