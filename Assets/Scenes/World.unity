@@ -422,7 +422,7 @@ MonoBehaviour:
   obstacleAmount: 0
   worldSize: 50
   worldAge: 0
-  foodMultiplier: 12
+  foodMultiplier: 2
   randomFood: {fileID: 1688276171670094, guid: 44e0b0661ddc25747bc018d4ba7b4433, type: 2}
 --- !u!1001 &1255338464
 Prefab:
