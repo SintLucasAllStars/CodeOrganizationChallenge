@@ -18,8 +18,9 @@ public class Creatures : MonoBehaviour {
 	Transform otherCreature;
 
 
-	public void OnTriggerEnter (Collision coll) { //template SHOULD BE IN ANIMALS AND HUMANS 
+	public void OnTriggerEnter (Collider coll) { //template SHOULD BE IN ANIMALS AND HUMANS 
 		float engage;
+        otherCreature = coll.gameObject.transform;
 		engage = aggression + Random.Range (1, 50); // determine what the creature is going to do.
 		if (engage > 99) { // Approach the target and try to attack it.
 			transform.position = Vector3.MoveTowards(transform.position, otherCreature.position, 5); //move towards the target. "needs tweaking on values"
