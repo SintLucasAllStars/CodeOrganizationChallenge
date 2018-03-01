@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Humans : MonoBehaviour {
+public class Humans : Creatures {
+	float intelligence;
 
 	// Use this for initialization
 	void Start () {
