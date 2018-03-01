@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainScript : MonoBehaviour {
 
+    public static MainScript mainScript;
     public List<string> completedPuzzles;               // Completed puzzles list.
     public GameObject player;                           // The player object (might be replaced).
     public Vector3 startingPosition, startingRotation;  // Starting position and rotation of the player - set in editor.
@@ -15,13 +16,16 @@ public class MainScript : MonoBehaviour {
 
     // Replace with singleton - Kars' job btw
     void Awake() {
-        DontDestroyOnLoad(transform.gameObject);
-
-        if (FindObjectsOfType(GetType()).Length > 1) {
+        if (mainScript == null)
+        {
+            mainScript = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
-
     /// <summary>
     /// Creates an empty completed puzzles list and sets player starting position
     /// </summary>
