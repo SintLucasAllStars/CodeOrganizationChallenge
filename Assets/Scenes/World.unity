@@ -948,7 +948,7 @@ MonoBehaviour:
   creatures: []
   worldClimate: 2
   obstacleAmount: 0
-  timeScale: 5
+  timeScale: 1
   worldSize: 50
   worldAge: 0
   foodMultiplier: 2
