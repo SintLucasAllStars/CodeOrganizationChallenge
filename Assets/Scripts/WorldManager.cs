@@ -42,7 +42,7 @@ public class WorldManager : MonoBehaviour
 
     public IEnumerator FoodSpawner()
     {
-        yield return new WaitForSeconds(foodMultiplier * 1.5f);
+        yield return new WaitForSeconds(foodMultiplier * 1.5f / (worldSize / 50));
         Instantiate(randomFood, new Vector3(Random.Range(-worldSize / 2 - -worldSize / 10, worldSize / 2 - worldSize / 10), 0, Random.Range(-worldSize / 2 + worldSize / 10, worldSize / 2 - worldSize / 10)), Quaternion.identity);
         StartCoroutine(FoodSpawner());
     }
