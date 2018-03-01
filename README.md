@@ -1,6 +1,9 @@
 # Team and Project
 Tijn van den Broek & Jorrit Slaats
-Evolution
+* Evolution
+
+## Instructions
+Set the modifiers in the World Manager to make evolution and probably murder happen. Different modifiers may result in different outcomes!
 
 # CodeOrganizationChallenge
 Assignment for 2nd years Code Organization Challenge. 
