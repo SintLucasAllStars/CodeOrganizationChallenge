@@ -5,7 +5,8 @@ using UnityEngine;
 public class Animals : Creatures {
 	float instinct;
 
-	void Start () {
-		GetComponent<SphereCollider> ().radius = combatEfficiency / 2 + aggression;
+	public Animals (EatingBehaviour eB, float sz, float fer, float at, float ma, float a) { //attempt at animal template. sz size, fer fertility, at attractionRate, ma maxAge, a Aggression
+		GetComponent<SphereCollider> ().radius = combatEfficiency / 2 + aggression; //sets the detection radius
+
 	}
 }
