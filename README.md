@@ -1,3 +1,12 @@
+From Juul Cox GD2A
+
+Hello David,
+
+This is my project. I tried to make the card game. Didn't really succeed in that :( got stuck where I didn't know what to do and stopped.
+well here it is :)
+
+From Juul Cox GD2A
+
 # CodeOrganizationChallenge
 Assignment for 2nd years Code Organization Challenge. 
 
