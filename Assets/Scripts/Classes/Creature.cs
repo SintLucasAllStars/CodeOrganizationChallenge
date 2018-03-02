@@ -154,4 +154,12 @@ public class Creature : MonoBehaviour {
 
 	}
 
+    public void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
 }

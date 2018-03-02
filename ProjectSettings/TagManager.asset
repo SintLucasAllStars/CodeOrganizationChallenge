@@ -9,6 +9,7 @@ TagManager:
   - World Master
   - Creature
   - Food
+  - Obstacle
   layers:
   - Default
   - TransparentFX

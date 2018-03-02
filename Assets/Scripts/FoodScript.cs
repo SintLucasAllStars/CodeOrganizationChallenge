@@ -43,4 +43,12 @@ public class FoodScript : MonoBehaviour {
             Destroy(this.gameObject, Random.Range(15, 20));
         }
     }
+
+    public void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
