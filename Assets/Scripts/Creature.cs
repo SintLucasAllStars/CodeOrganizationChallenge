@@ -38,7 +38,6 @@ public class Creature : MonoBehaviour
     public State state;
 
     public Vector3 randomPos;                                                   //Just a vector3 that stores the random position the creature is walking to if it is in walking mode.
-    public bool canGetHit = true;
 
     public GameObject other;                                                    //The other creature this creature is either fighting or mating with.
     public bool hasBaby;
@@ -60,6 +59,11 @@ public class Creature : MonoBehaviour
         agent.acceleration = 20;
 
         StartCoroutine(HungerUp());
+    }
+
+    private void Start()
+    {
+        agent.speed = dna.speed;
     }
 
     IEnumerator HungerUp()
@@ -97,7 +101,7 @@ public class Creature : MonoBehaviour
                 
                 break;
             case Hostility.Neutral:                                             //If the creature is neutral it will take a random path.
-                int random = Random.Range(0, 3);
+                int random = Random.Range(0, 2);
                 switch (random)
                 {
                     case 0:
@@ -108,15 +112,18 @@ public class Creature : MonoBehaviour
 
                         break;
                     case 1:
-                        if (monster.name != dna.species)
+                        if (!isHungry)
                         {
-                            state = State.Fighting;
+                            if (monster.name != dna.species)
+                            {
+                                state = State.Fighting;
+                            }
+                        }
+                        if(isHungry)
+                        {
+                            state = State.Hunting;
                         }
 
-                        break;
-                    case 2:
-                        state = State.Walking;
-                        other = null;
                         break;
                 }
                 break;
@@ -142,21 +149,28 @@ public class Creature : MonoBehaviour
     {
         state = State.Fighting;
         Creature monsterCreature = other.GetComponent<Creature>();
-        if(monsterCreature.canGetHit)
-        {
-            monsterCreature.dna.health -= dna.strength;                         
-        }
+        monsterCreature.dna.health -= dna.strength;
         Debug.Log(this.gameObject.name + " and " + other.gameObject.name + " started fighting.");
+        hunger = 0;
     }
 
-    void Mate(GameObject other)                                                 //If the other creature is hostile, the creatures won't be able to mate so it will return to just walking around;
+    void AttackForFood(GameObject other)
     {
-        if (other.GetComponent<Creature>().hostility != Hostility.Hostile)      //We first want to check if the other creature is not hostile.
-        {   
+        state = State.Fighting;
+        Creature monsterCreature = other.GetComponent<Creature>();
+        monsterCreature.dna.health -= dna.strength;
+        Debug.Log(this.gameObject.name + " is hungry and him and " + other.gameObject.name + " started fighting.");
+        hunger = 0;
+    }
+
+    void Mate(GameObject other)                                                 
+    {
+        if (hostility != Hostility.Hostile)
+        {
             if (other.GetComponent<Creature>().hostility == Hostility.Friendly)     //If a creature is friendly it will always want to mate with a creature of the same species.
             {
                 StartCoroutine(BreedBaby());                                                                    //The creature can't breed for a few seconds.
-                GameObject Baby = new GameObject(dna.species);     //The name will be a merge of the species.
+                GameObject Baby = new GameObject(dna.species);
                 Baby.AddComponent<Creature>();                                                                  //Adding the creature component to the new baby.
                 Baby.GetComponent<Creature>().dna = new DNA(dna.MergeStats(other.GetComponent<Creature>().dna));        //Merging stats from the other creature.
                 if (Resources.Load<GameObject>(dna.species) != null)                                                    //In case there is a model in the resources folder, it will load it and instantiate as child.                                   
@@ -164,19 +178,21 @@ public class Creature : MonoBehaviour
                     Instantiate(Resources.Load<GameObject>(dna.species), Baby.transform.position, Baby.transform.rotation, Baby.transform);
                 }
                 Debug.Log(this.gameObject.name + " and " + other.gameObject.name + " made a baby named " + Baby.gameObject.name + ".");
+                other = null;
             }
             if (other.GetComponent<Creature>().hostility == Hostility.Neutral)
             {
                 int random = Random.Range(0, 2);
-                switch(random)
+                switch (random)
                 {
                     case 0:
                         StartCoroutine(BreedBaby());                                                                            //The neutral creature refuses, but the creature still cannot reproduce for a few seconds.
-                        Debug.Log(this.gameObject.name + " tried to make a baby but " + other.gameObject.name + " refused.");   //Neutral creatures can also refuse mating.
+                        Debug.Log(this.gameObject.name + " tried to make a baby but " + other.gameObject.name + " refused.");   //Neutral and hostile creatures can also refuse mating. This makes them different than friendly creatures.
+                        other = null;
                         break;
                     case 1:
                         StartCoroutine(BreedBaby());                                                                            //The creature can't breed for a few seconds.
-                        GameObject Baby = new GameObject(dna.species);             //The name will be a merge of the species.
+                        GameObject Baby = new GameObject(dna.species);
                         Baby.AddComponent<Creature>();                                                                          //Adding the creature component to the new baby.
                         Baby.GetComponent<Creature>().dna = new DNA(dna.MergeStats(other.GetComponent<Creature>().dna));        //Merging stats from the other creature.
                         if (Resources.Load<GameObject>(Baby.gameObject.name) != null)                                           //In case there is a model in the resources folder, it will load it and instantiate as child.                                   
@@ -184,13 +200,36 @@ public class Creature : MonoBehaviour
                             Instantiate(Resources.Load<GameObject>(Baby.gameObject.name), Baby.transform.position, Baby.transform.rotation, Baby.transform);
                         }
                         Debug.Log(this.gameObject.name + " and " + other.gameObject.name + " made a baby named " + Baby.gameObject.name + ".");
+                        other = null;
                         break;
                 }
             }
         }
-        else
-        {
-            state = State.Walking;                  //If the other creature is hostile, the creature will not initiate a mating request and just continue walking around.                                
+        if (hostility == Hostility.Hostile) {
+            if (other.GetComponent<Creature>().hostility == Hostility.Hostile )
+            {
+                int random = Random.Range(0, 2);
+                switch (random)
+                {
+                    case 0:
+                        StartCoroutine(BreedBaby());                                                                            //The neutral creature refuses, but the creature still cannot reproduce for a few seconds.
+                        Debug.Log(this.gameObject.name + " tried to make a baby but " + other.gameObject.name + " refused.");   //Neutral and hostile creatures can also refuse mating. This makes them different than friendly creatures.
+                        other = null;
+                        break;
+                    case 1:
+                        StartCoroutine(BreedBaby());                                                                            //The creature can't breed for a few seconds.
+                        GameObject Baby = new GameObject(dna.species);
+                        Baby.AddComponent<Creature>();                                                                          //Adding the creature component to the new baby.
+                        Baby.GetComponent<Creature>().dna = new DNA(dna.MergeStats(other.GetComponent<Creature>().dna));        //Merging stats from the other creature.
+                        if (Resources.Load<GameObject>(Baby.gameObject.name) != null)                                           //In case there is a model in the resources folder, it will load it and instantiate as child.                                   
+                        {
+                            Instantiate(Resources.Load<GameObject>(Baby.gameObject.name), Baby.transform.position, Baby.transform.rotation, Baby.transform);
+                        }
+                        Debug.Log(this.gameObject.name + " and " + other.gameObject.name + " made a baby named " + Baby.gameObject.name + ".");
+                        other = null;
+                        break;
+                }
+            }
         }
     }
 
@@ -234,6 +273,16 @@ public class Creature : MonoBehaviour
                 if (other != null)
                 {
                     agent.SetDestination(other.transform.position);
+                }
+                if(other == null)
+                {
+                    if (agent.remainingDistance < 1)
+                    {
+                        float x = Random.Range(13, 400);
+                        float z = Random.Range(0, 400);
+                        randomPos = new Vector3(x, transform.position.y, z);
+                    }
+                    agent.SetDestination(randomPos);
                 }
 
                 break;
@@ -302,7 +351,15 @@ public class Creature : MonoBehaviour
                 Attack(collision.gameObject);
                 collision.gameObject.GetComponent<Creature>().other = this.gameObject;
                 collision.gameObject.GetComponent<Creature>().state = State.Fighting;
-                hunger = 0;
+
+            }
+            if (state == State.Hunting)
+            {
+                if (type == Type.Carnivore || type == Type.Omnivorous)
+                {
+                    AttackForFood(collision.gameObject);
+                    hunger = 0;
+                }
             }
         }
         if(collision.gameObject.CompareTag("Food"))

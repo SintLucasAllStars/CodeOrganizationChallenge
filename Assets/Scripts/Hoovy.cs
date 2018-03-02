@@ -7,7 +7,7 @@ public class Hoovy : Creature
 {
     void Start()
     {
-        dna = new DNA(50, 40, 20, 100, "Hoovy", 0.1f, 1);
+        dna = new DNA(50, 20, 20, 100, "Hoovy", 0.1f);
         type = Type.Omnivorous;      //Heavy eats meat and fruits.
         transform.localScale = new Vector3(dna.size, dna.size, dna.size);
         hostility = Hostility.Friendly;
