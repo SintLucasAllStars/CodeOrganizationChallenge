@@ -7,15 +7,14 @@ public class Hoovy : Creature
 {
     void Start()
     {
-        dna = new DNA(50, 40, 20, 100, "Hoovy", 0.1f);
+        dna = new DNA(50, 40, 20, 100, "Hoovy", 0.1f, 1);
         type = Type.Omnivorous;      //Heavy eats meat and fruits.
-        dna.attackSpeed = 1f;       //Heavy's attackspeed is neutral
         transform.localScale = new Vector3(dna.size, dna.size, dna.size);
-        hostility = Hostility.Neutral;
+        hostility = Hostility.Friendly;
 
         agent.speed = dna.speed;
 
-        collider.size = new Vector3(37.45f, 101.74f, 48.11f);
-        collider.center = new Vector3(0, 37.38f, 0);
+        coll.size = new Vector3(37.45f, 101.74f, 48.11f);
+        coll.center = new Vector3(0, 37.38f, 0);
     }
 }
