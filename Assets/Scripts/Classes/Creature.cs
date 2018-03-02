@@ -97,6 +97,8 @@ public class Creature : MonoBehaviour {
 
 	public void Update(){
 
+		#region State Switch
+
 		switch (currentState) {
 		case LifeState.alive:
 			Alive ();
@@ -109,29 +111,40 @@ public class Creature : MonoBehaviour {
 			Hungry ();
 		break;
 		case LifeState.combat:
-			// It should activate Combat() and fight with the other creature
+			// It should activate Combat() and fight with the other creature.
+			// One of the creatures should die, resorting to Dead() and the
+			// -other creature will return to Alive() and continue the simulation.
 		break;
 		case LifeState.mating:
-			// It should activate Mating() and mate with another creature to make a new one appear
+			// It should activate Mating() and mate with another creature to make a new creature,
+			// -inheriting dna from both parents and normalizing the values to an acceptable number
+			// -to avoid insanely strong creatures too early in the simulation.
 		break;
 		default:
-			
+			//It should only go default if something went wrong, in which case we want to terminate the test subject.
+			Dead ();
 		break;
 		}
 
+		#endregion
+
 	}
+
+	#region Lifestate Functions
 
 	public void Aging(){
 
-		age = age + 1f * Time.deltaTime / 0.017f;
+		// The creatures age up.
+		age = age + 0.017f * Time.deltaTime;
 
 	}
 
 	public void Alive(){
 
-		// This will become a proper movement function at some point, sorry David/Luc i'm  too lazy to fix it right now. :(
+		// Moves forward when living
 		transform.Translate(Vector3.forward * speed / 20 * Time.deltaTime);
 
+		// When the creature gets hungry it activates Hungry state
 		if (hunger <= 20) {
 			currentState = LifeState.hungry;
 		}
@@ -139,27 +152,41 @@ public class Creature : MonoBehaviour {
 	}
 
 	public void Dead(){
-	
+
+		// It should also become a carcass.
+		// -This can be done by just changing current material
+		// -to a more "dead" coloured material.
 		gameObject.tag = "Food";
-		// It should also become a carcass
 
 	}
 
 	public void Hungry(){
 
-		// It should find the closest food and eat it
+		// It should find the closest food and eat it.
+		// We would do this by accessing the list of food
+		// -from the world manager, and then finding the closest
+		// -gameobject of type food and going towards it.
 
 	}
 
+	#endregion
+
+	#region IENumerators
+
 	public IEnumerator randMovement(){
 
-		// make a wait untill so it doesn rotate every second...
+		// We're using a looping IENumerator for our random creature movements.
+		// Proper function coming soon^tm
 		yield return new WaitUntil(() => currentState >= LifeState.alive);
 		transform.Rotate (0, Random.Range (-50f, 50f), 0);
 		yield return new WaitForSeconds(Random.Range(0.5f,1.5f));
 		StartCoroutine (randMovement ());
 
 	}
+
+	#endregion
+
+	#region Collisions
 
     public void OnCollisionStay(Collision collision)
     {
@@ -168,5 +195,7 @@ public class Creature : MonoBehaviour {
             Destroy(collision.gameObject);
         }
     }
+
+	#endregion
 
 }
