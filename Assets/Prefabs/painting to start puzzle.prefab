@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65252490509787344}
   - component: {fileID: 23433155243648972}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: PaintingFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 65222011029900374}
   - component: {fileID: 23178002759786140}
   m_Layer: 0
-  m_Name: template for puzzle
+  m_Name: PaintingImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,10 +55,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4315080891542546}
-  - component: {fileID: 114147276328218284}
+  - component: {fileID: 114370949375709358}
   m_Layer: 0
   m_Name: painting to start puzzle
-  m_TagString: Untagged
+  m_TagString: PuzzlePainting
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1865108389543558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.52, y: 2.67, z: -2.78}
+  m_LocalPosition: {x: -13.52, y: 2.67, z: 0.49}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4424679516768958}
@@ -210,7 +210,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114147276328218284
+--- !u!114 &114370949375709358
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -218,8 +218,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1865108389543558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3289950780fdc6142b4717442e69db2c, type: 3}
+  m_Script: {fileID: 11500000, guid: f9f5c35c3950d4048ab10b1d81de97e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dependancies:
-  - test
+  sceneName: 
+  dependencies: []

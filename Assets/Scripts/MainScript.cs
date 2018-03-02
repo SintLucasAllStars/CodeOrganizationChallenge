@@ -31,7 +31,7 @@ public class MainScript : MonoBehaviour {
     /// </summary>
     void Start() {
         completedPuzzles = new List<string>();
-        player = GameObject.Find("MainPlayer"); // Player object in the main scene should be called 'MainPlayer'
+        player = GameObject.Find("MainPlayer");             // Player object in the main scene should be called 'MainPlayer'
         playerPosition = startingPosition;
         playerRotation = Quaternion.Euler(startingRotation);
     }
@@ -41,8 +41,8 @@ public class MainScript : MonoBehaviour {
     /// </summary>
     /// <param name="puzzleSceneName">Puzzle scene name</param>
     public void LoadPuzzle(string puzzleSceneName) {
-        playerPosition = player.transform.position;
-        playerRotation = player.transform.rotation;
+        playerPosition = player.transform.position;  // Save player position and rotation
+        playerRotation = player.transform.rotation;  //
         SceneManager.LoadScene(puzzleSceneName, LoadSceneMode.Single);
     }
 
@@ -63,18 +63,10 @@ public class MainScript : MonoBehaviour {
     /// <param name="scene">The scene that was loaded</param>
     /// <param name="mode">Required to work, but not used</param>
     void SetPlayerPosition(Scene scene, LoadSceneMode mode) {
+        // Should only happen if we load into the main scene
         if (scene.name == "Main") {
             player = GameObject.Find("MainPlayer");
             player.transform.SetPositionAndRotation(playerPosition, playerRotation);
-        }
-    }
-
-    /// <summary>
-    /// Temporary function to load and unload the 'test' puzzle
-    /// </summary>
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.G)) {
-            FinishPuzzle("");
         }
     }
 }
