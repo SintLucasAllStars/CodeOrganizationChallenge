@@ -2,18 +2,18 @@
 Kylian Dekker
 * Evolution and DNA - Spore is one of my childhood games, so I choose this one because I admire the features they have in the game.
 
-#Instructions
+##Instructions
 To make your own creature you must make a script that inherits from the Creature script. Take a look at the example creatures
 in the example folder. 
 
-#What is done and what is not done
+##What is done and what is not done
 DNA is done with a lot of different variables like the name of the species, the speed, the strength, etc. Creatures fight each other and can mate each other.
 Creatures can also refuse mating with other creatures, there is a random chance that this happens. Creatures can get hungry as well. Creatures can be Herbivorous, Carnivorous or Omnivorous. 
 Depending on this, creatures who are Carnivorous might attack other creatures when they are hungry, even one of their own.
 Herbivorous creatures will always look for plants around the map. These have the tag "Food" and you can just add colliders to different prefabs if you want and change the tag.
 I have not done anything with age. It was not really a requirement, but I tried implementing this feature. I think all the features described at the lower part of this readme file are implemented.
 
-#What I learned
+##What I learned
 It was fun working on this project. I initially worked with a type system, but figured out it was not really the best way to get what I wanted to achieve with this project.
 
 # CodeOrganizationChallenge
