@@ -946,8 +946,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creatures: []
-  worldClimate: 2
+  worldClimate: 3
   obstacleAmount: 0
+  timeScale: 1
   worldSize: 100
   worldAge: 0
   foodMultiplier: 12
