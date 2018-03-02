@@ -21,11 +21,11 @@ public class WorldManager : MonoBehaviour
     public float foodMultiplier;
 
     public GameObject randomFood;
+    public GameObject obstacle;
     #endregion
 
     public void Start()
     {
-        Time.timeScale = timeScale;
 
         StartCoroutine(FoodSpawner());
 
@@ -38,6 +38,18 @@ public class WorldManager : MonoBehaviour
             //Spawn a random food on a random location on the world
             Instantiate(randomFood, new Vector3(Random.Range(-worldSize / 2 - -worldSize / 10, worldSize / 2 - worldSize / 10), 0, Random.Range(-worldSize / 2 + worldSize / 10, worldSize / 2 - worldSize / 10)), Quaternion.identity);
         }
+
+        // Repeat the spawn depending on the size of the map
+        for (int i = 0; i < worldSize; i+=10)
+        {
+            // Spawn a random obstacle on a random location on the world
+            Instantiate(obstacle, new Vector3(Random.Range(-worldSize / 2 - -worldSize / 10, worldSize / 2 - worldSize / 10), 0, Random.Range(-worldSize / 2 + worldSize / 10, worldSize / 2 - worldSize / 10)), Quaternion.Euler(45, Random.Range(0, 360), 45));
+        }
+    }
+
+    public void Update()
+    {
+        Time.timeScale = timeScale;
     }
 
     public IEnumerator FoodSpawner()
