@@ -21,6 +21,7 @@ public class Creature : MonoBehaviour
     {
         Walking,
         Mating,
+        Hunting,
         Fighting,
         Hit
     };                                                                          //shit - Maud, 2018
@@ -42,6 +43,9 @@ public class Creature : MonoBehaviour
     public GameObject other;                                                    //The other creature this creature is either fighting or mating with.
     public bool hasBaby;
 
+    public int hunger;
+    public bool isHungry;
+
     private void Awake()
     {
         gameObject.AddComponent<Animator>();        
@@ -54,6 +58,15 @@ public class Creature : MonoBehaviour
         gameObject.tag = "Character";
 
         agent.acceleration = 20;
+
+        StartCoroutine(HungerUp());
+    }
+
+    IEnumerator HungerUp()
+    {
+        hunger++;
+        yield return new WaitForSeconds(1);
+        StartCoroutine(HungerUp());
     }
 
     /*
@@ -183,14 +196,23 @@ public class Creature : MonoBehaviour
 
     private void Update()
     {
+        if(hunger > 50)
+        {
+            isHungry = true;
+            state = State.Hunting;
+        }
+        if (other == null && !isHungry)
+        {
+            state = State.Walking;
+        }
+        if (hunger > 100)
+        {
+            Destroy(this.gameObject);
+        }
         if(dna.health < 1)
         {
             Destroy(this.gameObject);               //Destroy the creature if the health gets under 0.
             Debug.Log(gameObject.name + " got killed.");
-        }
-        if(other == null)
-        {
-            state = State.Walking;
         }
         switch(state)
         {
@@ -208,8 +230,15 @@ public class Creature : MonoBehaviour
                 }
 
                 break;
+            case State.Hunting:      //If the creature is hunting for fewd.
+                if (other != null)
+                {
+                    agent.SetDestination(other.transform.position);
+                }
+
+                break;
             case State.Walking:     //If the creature is walking around it will take random positions on the map.
-                if (agent.remainingDistance < 0.5)
+                if (agent.remainingDistance < 1)
                 {
                     float x = Random.Range(13, 400);
                     float z = Random.Range(0, 400);
@@ -227,20 +256,27 @@ public class Creature : MonoBehaviour
         */
         Debug.DrawRay(transform.position + new Vector3(0, 2, 0), transform.forward * 100.0f, Color.red);
         RaycastHit hit;
-
-        if (Physics.Raycast(transform.position + new Vector3(0, 2, 0), transform.forward, out hit, 1000))
+        if (other == null)
         {
-            if (hit.collider.gameObject.CompareTag("Character"))
+            if (Physics.Raycast(transform.position + new Vector3(0, 2, 0), transform.forward, out hit, 1000))
             {
-                if(state == State.Walking)
+                if (hit.collider.gameObject.CompareTag("Character"))
                 {
-                    other = hit.collider.gameObject;
-                    Interact(hit.collider.gameObject);
+                    if (state == State.Walking)
+                    {
+                        other = hit.collider.gameObject;
+                        Interact(hit.collider.gameObject);
+                    }
+                }
+                if(hit.collider.gameObject.CompareTag("Food"))
+                {
+                    if(type == Type.Herbivorous || type == Type.Omnivorous && isHungry)
+                    {
+                        other = hit.collider.gameObject;
+                    }
                 }
             }
-
         }
-
     }
 
     /*
@@ -261,6 +297,17 @@ public class Creature : MonoBehaviour
                 Attack(collision.gameObject);
                 collision.gameObject.GetComponent<Creature>().other = this.gameObject;
                 collision.gameObject.GetComponent<Creature>().state = State.Fighting;
+                hunger = 0;
+            }
+        }
+        if(collision.gameObject.CompareTag("Food"))
+        {
+            if (isHungry)
+            {
+                Destroy(other.gameObject);
+                hunger = 0;
+                other = null;
+                state = State.Walking;
             }
         }
     }
@@ -270,6 +317,7 @@ public class Creature : MonoBehaviour
         hasBaby = true;
         yield return new WaitForSeconds(8);
         state = State.Walking;
+        other = null;
         hasBaby = false;
     }
 }
