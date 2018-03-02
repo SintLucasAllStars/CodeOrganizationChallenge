@@ -33,6 +33,15 @@ public class Creature : MonoBehaviour {
 
 	#endregion
 
+	public GameObject wm;
+
+	// Type to set and read the current state of individual creature
+	public enum LifeState {alive,dead,hungry,combat,mating};
+	public LifeState currentState;
+
+	// Raycast to detect food/fighting/fucking
+	RaycastHit hit;
+
 	public void Start(){
 		
 		#region OOP setup
@@ -73,21 +82,67 @@ public class Creature : MonoBehaviour {
 		age = thisDNA.age;
 		#endregion
 
+		wm = GameObject.FindGameObjectWithTag ("World Manager").GetComponent<WorldManager>();
+
 		// Set initial rotation to a random degree (else they all walk in the same direction at start)
 		gameObject.transform.eulerAngles = new Vector3 (0,Random.Range(0,361),0);
 
-		// This will become a proper movement function at some point, sorry David/Luc i'm  too lazy to fix it right now. :(
-		StartCoroutine (randMovement ());
+
+		// Set lifestate to alive on start
+		currentState = LifeState.alive;
 
 	}
 
 	public void Update(){
 
-		#region Movement
+		switch (LifeState) {
+		case LifeState.alive:
+			Alive ();
+			Aging ();
+		break;
+		case LifeState.dead:
+			Dead ();
+		break;
+		case LifeState.hungry:
+		break;
+		case LifeState.combat:
+		break;
+		case LifeState.mating:
+		break;
+		default:
+			
+		break;
+		}
 
+	}
+
+	public void Aging(){
+
+		age = age + 1f * Time.deltaTime / 0.017f;
+
+	}
+
+	public void Alive(){
+
+		// This will become a proper movement function at some point, sorry David/Luc i'm  too lazy to fix it right now. :(
 		transform.Translate(Vector3.forward * speed / 20 * Time.deltaTime);
+		StartCoroutine (randMovement ());
 
-		#endregion
+		if (hunger <= 20) {
+			currentState = LifeState.hungry;
+		}
+
+	}
+
+	public void Dead(){
+	
+		gameObject.tag = "Food";
+
+	}
+
+	public void Hungry(){
+
+
 
 	}
 
