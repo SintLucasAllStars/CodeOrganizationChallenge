@@ -20,14 +20,16 @@ public class Card{
 		this.cardType = cardType;
 		this.cardState = cardState;
 		this.position = position;
+		gameObject = GameObject.Instantiate (prefab, position, Quaternion.identity);
+
 
 	}
 
-	public int ReturnCardtype (int type){
-		return type;
+	public types ReturnCardtype (){
+		return cardType;
 	}
 
-	public int ReturnValue (int value){
+	public int ReturnValue (){
 		return value;
 	}
 

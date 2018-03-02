@@ -1,19 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+public class CardDisplay : MonoBehaviour {
+	public Text cardTypeText;
+	public Text cardValue;
 
-public class Player : MonoBehaviour {
-	List <Card> HandCards;
 	// Use this for initialization
 	void Start () {
-		HandCards = new List<Card> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-	}
-	void AddCard(){
-
 	}
 }
