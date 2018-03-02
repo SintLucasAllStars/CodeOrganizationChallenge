@@ -82,7 +82,8 @@ public class Creature : MonoBehaviour {
 		age = thisDNA.age;
 		#endregion
 
-		//wm = GameObject.FindGameObjectWithTag ("World Manager");
+		// Find worldmanager if we need to pull some info from it
+		wm = GameObject.FindGameObjectWithTag ("World Manager");
 
 		// Set initial rotation to a random degree (else they all walk in the same direction at start)
 		gameObject.transform.eulerAngles = new Vector3 (0,Random.Range(0,361),0);
@@ -104,10 +105,13 @@ public class Creature : MonoBehaviour {
 			Dead ();
 		break;
 		case LifeState.hungry:
+			Hungry ();
 		break;
 		case LifeState.combat:
+			// It should activate Combat() and fight with the other creature
 		break;
 		case LifeState.mating:
+			// It should activate Mating() and mate with another creature to make a new one appear
 		break;
 		default:
 			
@@ -137,17 +141,19 @@ public class Creature : MonoBehaviour {
 	public void Dead(){
 	
 		gameObject.tag = "Food";
+		// It should also become a carcass
 
 	}
 
 	public void Hungry(){
 
-
+		// It should find the closest food and eat it
 
 	}
 
 	public IEnumerator randMovement(){
 
+		// make a wait untill so it doesn rotate every second...
 		transform.Rotate (0, Random.Range (-50f, 50f), 0);
 		yield return new WaitForSeconds(Random.Range(0.5f,1.5f));
 		StartCoroutine (randMovement ());
