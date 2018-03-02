@@ -6,27 +6,27 @@ using UnityEngine;
 public class DNA {
 
     public float speed;     //The speed of the creature.
-    public float strength;      //The combat strength of the creature
-    public float intelligence;      //The intelligence of the creature
-    public float health;        //The health points the creature has
+    public float strength;      //The combat strength of the creature.
+    public float intelligence;      //The intelligence of the creature.
+    public float health;        //The health points the creature has.
 
-    public float attackSpeed;       //The attack speed of the creature
-    public float size;      //The size of the creature
+    public float attackSpeed;       //The attack speed of the creature.
+    public float size;      //The size of the creature.
 
-    public string species;      //The name of the species the creature represents
+    public string species;      //The name of the species the creature represents.
 
-
-    //Constructor for the DNA that lets me choose whatever values I want
-    public DNA(float speed, float strength, float intelligence, float health)
+    //Constructor for the DNA that lets me choose whatever values I want.
+    public DNA(float speed, float strength, float intelligence, float health, string species, float size)
     {
         this.speed = speed;
         this.strength = strength;
         this.intelligence = intelligence;
         this.health = health;
-
+        this.species = species;
+        this.size = size;
     }
 
-    //Overload constructor that let's me choose an entire DNA
+    //Overload constructor that let's me choose an entire DNA.
     public DNA(DNA dna)
     {
         this.speed = dna.speed;
@@ -35,7 +35,7 @@ public class DNA {
         this.health = dna.health;
     }
 
-    //Just a function that lets me combine two DNAs with each other and returns a DNA. Did this with Bas together, so our methods are quite similar
+    //Just a function that lets me combine two DNAs with each other and returns a DNA. Did this with Bas together, so our methods are quite similar.
     public DNA MergeStats(DNA otherDna)
     {
         float finalSpeed, finalStrength, finalIntelligence, finalHealth;

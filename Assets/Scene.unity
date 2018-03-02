@@ -201,19 +201,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 0}
   collider: {fileID: 0}
-  speed: 0
-  attackSpeed: 0
-  size: 0
-  intelligence: 0
-  strength: 0
-  health: 0
-  species: 
+  agent: {fileID: 0}
+  dna:
+    speed: 0
+    strength: 0
+    intelligence: 0
+    health: 0
+    attackSpeed: 0
+    size: 0
+    species: 
   type: 0
   hostility: 0
-  agent: {fileID: 0}
-  randomPos: {x: 0, y: 0, z: 0}
   state: 0
-  enemy: {fileID: 0}
+  randomPos: {x: 0, y: 0, z: 0}
+  canGetHit: 1
 --- !u!1 &770753460
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +437,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400990, guid: 2fb185f4d517fd94cb3d34a21e08e96b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.69
+      value: 2.13
       objectReference: {fileID: 0}
     - target: {fileID: 400990, guid: 2fb185f4d517fd94cb3d34a21e08e96b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -623,19 +624,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 0}
   collider: {fileID: 0}
-  speed: 0
-  attackSpeed: 0
-  size: 0
-  intelligence: 0
-  strength: 0
-  health: 0
-  species: 
+  agent: {fileID: 0}
+  dna:
+    speed: 0
+    strength: 0
+    intelligence: 0
+    health: 0
+    attackSpeed: 0
+    size: 0
+    species: 
   type: 0
   hostility: 2
-  agent: {fileID: 0}
-  randomPos: {x: 0, y: 0, z: 0}
   state: 0
-  enemy: {fileID: 0}
+  randomPos: {x: 0, y: 0, z: 0}
+  canGetHit: 1
 --- !u!1 &1757027395
 GameObject:
   m_ObjectHideFlags: 0
