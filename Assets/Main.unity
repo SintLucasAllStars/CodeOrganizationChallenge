@@ -288,6 +288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldPrefab: {fileID: 1786089075817886, guid: f42de6621895db447a3171f058a4e0fc,
     type: 2}
+  prefabAnimal: {fileID: 1097763167022774, guid: 2d349c374234ee347adc6fed8f7da40a,
+    type: 2}
 --- !u!4 &1362921481
 Transform:
   m_ObjectHideFlags: 0

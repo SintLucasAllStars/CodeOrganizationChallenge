@@ -6,10 +6,11 @@ public class MyGameManager : MonoBehaviour {
 
 	World myWorld;
     public GameObject worldPrefab;
+    public GameObject prefabAnimal;
 
     private void Start()
     {
-        myWorld = new World(worldPrefab, 100);
+        myWorld = new World(worldPrefab, 100, prefabAnimal);
     }
 
 }
