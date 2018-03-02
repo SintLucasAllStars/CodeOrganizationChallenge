@@ -10,6 +10,7 @@ TagManager:
   - Creature
   - Food
   - Obstacle
+  - InDestructible
   layers:
   - Default
   - TransparentFX
