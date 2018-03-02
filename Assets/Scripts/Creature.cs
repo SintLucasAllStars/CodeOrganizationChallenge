@@ -196,16 +196,16 @@ public class Creature : MonoBehaviour
 
     private void Update()
     {
-        if(hunger > 50)
+        if(hunger > 50)                             //If the creature has a hunger that is over 50, it will start hunting for food.   
         {
             isHungry = true;
             state = State.Hunting;
         }
-        if (other == null && !isHungry)
+        if (other == null && !isHungry)             //If the creature notices his enemy or ally is dead it will just go back to walking around.  
         {
             state = State.Walking;
         }
-        if (hunger > 100)
+        if (hunger > 100)                           //If the hunger is over 100 the creature will die ;(.
         {
             Destroy(this.gameObject);
         }
@@ -266,6 +266,11 @@ public class Creature : MonoBehaviour
                     {
                         other = hit.collider.gameObject;
                         Interact(hit.collider.gameObject);
+                    }
+                    if(state == State.Hunting && type == Type.Carnivore)
+                    {                   
+                            other = hit.collider.gameObject;
+                            Interact(hit.collider.gameObject);
                     }
                 }
                 if(hit.collider.gameObject.CompareTag("Food"))
