@@ -176,11 +176,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 287916410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3289950780fdc6142b4717442e69db2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6fa2edc17eefbf548bb6d165baa96af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dependancies:
+  dependencies:
   - test
+  - AnotherExample
 --- !u!1001 &576188572
 Prefab:
   m_ObjectHideFlags: 0
@@ -240,9 +241,10 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4e5afa6fb2d093641a6dcda3a4351e22, type: 2}
+      objectReference: {fileID: 2100000, guid: d69ce1bd64a322e4580a8c9ec151f3bc, type: 2}
     m_RemovedComponents:
     - {fileID: 114147276328218284, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+    - {fileID: 114370949375709358, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &576188573 stripped
@@ -261,7 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f5c35c3950d4048ab10b1d81de97e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: test
+  sceneName: AnotherExample
+  dependencies:
+  - test
 --- !u!1001 &902197218
 Prefab:
   m_ObjectHideFlags: 0
@@ -324,6 +328,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 3a5830cd15e74104eb8b3f83bcc8f642, type: 2}
     m_RemovedComponents:
     - {fileID: 114147276328218284, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+    - {fileID: 114370949375709358, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &972973855
@@ -875,3 +880,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: test
+  dependencies: []
