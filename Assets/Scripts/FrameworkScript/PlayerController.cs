@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour {
             cam.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
         }
 
-        // this is for using your mouse again ingame
+        // this is for (not)using your mouse again ingame
         if(Input.GetKeyDown(KeyCode.L)) {
             if(wantedMode == CursorLockMode.None) {
                 wantedMode = CursorLockMode.Locked;
@@ -72,7 +72,6 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKey(KeyCode.E)) {
             ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, MaxTouchDistance)) {
-                //Debug.Log(hit.transform.parent.name);
                 PuzzleLoader loader = hit.transform.parent.GetComponent<PuzzleLoader>();
                 if (loader != null) {
                     loader.OnUsed();
