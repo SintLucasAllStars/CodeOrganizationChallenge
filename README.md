@@ -13,4 +13,8 @@
 GameObject.Find("MainController").GetComponent<MainScript>().FinishPuzzle("<scene name goes here>");
 ```
 
+### How to play
+In the main scene, walk over to a painting and press E while standing close and looking at it.
+If nothing happens, either the painting has been setup incorrectly, or you must complete some other puzzles before you can attempt the chosen one.
+When all the required puzzles have been completed, the door will have disappeared once you've come back from a puzzle.
 
