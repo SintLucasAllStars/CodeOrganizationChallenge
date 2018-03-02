@@ -5,6 +5,12 @@ Tijn van den Broek & Jorrit Slaats
 ## Instructions
 Set the modifiers in the World Manager to make evolution and probably murder happen. Different modifiers may result in different outcomes!
 
+## What's done and what's not
+We've got the OOP side of things done; creatures have DNA, food is food and the world manager is all setup and ready to go. What's not done yet is interaction between creatures, proper creature-state management (look at creature code for it to make more sense!) and some world restrictions (movement boundaries etc).
+
+## What we've learned
+How to properly use OOP with C# and Unity. I (Tijn) had the concept of OOP in my head, but couldn't quite get it working. Jorrit had a harder time grasping the concept properly but knew how to implement it in a way. We've bundled both of our brains and figured it out. Sadly we didn't get enough work in to fix the whole simulation, but we'll be working on it further in our spare time because it's a fun project.
+
 # CodeOrganizationChallenge
 Assignment for 2nd years Code Organization Challenge. 
 
