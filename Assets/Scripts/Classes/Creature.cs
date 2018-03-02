@@ -91,6 +91,7 @@ public class Creature : MonoBehaviour {
 
 		// Set lifestate to alive on start
 		currentState = LifeState.alive;
+		StartCoroutine (randMovement ());
 
 	}
 
@@ -130,7 +131,6 @@ public class Creature : MonoBehaviour {
 
 		// This will become a proper movement function at some point, sorry David/Luc i'm  too lazy to fix it right now. :(
 		transform.Translate(Vector3.forward * speed / 20 * Time.deltaTime);
-		StartCoroutine (randMovement ());
 
 		if (hunger <= 20) {
 			currentState = LifeState.hungry;
@@ -154,6 +154,7 @@ public class Creature : MonoBehaviour {
 	public IEnumerator randMovement(){
 
 		// make a wait untill so it doesn rotate every second...
+		yield return new WaitUntil(() => currentState >= LifeState.alive);
 		transform.Rotate (0, Random.Range (-50f, 50f), 0);
 		yield return new WaitForSeconds(Random.Range(0.5f,1.5f));
 		StartCoroutine (randMovement ());
