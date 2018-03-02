@@ -39,5 +39,16 @@
         CardManager.GetCardManager().MarkCardAvailable(combineCard);
         return returnCard;
     }
+
+    public bool CanPlace()
+    {
+        Card c = CardManager.GetCardManager().GetCurrentPlayCard();
+        return c.GetCardType() == cardType || c.GetCardNumber() == cardNumber;
+    }
+
+    public string ToString()
+    {
+        return cardType.ToString() + " " + cardNumber;
+    }
     
 }

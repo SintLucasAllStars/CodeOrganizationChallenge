@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class CardManager
 {
@@ -29,6 +29,8 @@ public class CardManager
 				availableCards.Add(new Card(cardType, i));
 			}
 		}
+
+		currentPlayCard = GetRandomAvailableCard();
 	}
 
 	public Card GetCurrentPlayCard()
@@ -68,8 +70,7 @@ public class CardManager
 
 	public Card GetRandomAvailableCard()
 	{
-		Random r = new Random();
-		return ReturnAndRemove(availableCards[r.Next(availableCards.Count)]);
+		return ReturnAndRemove(availableCards[Random.Range(0, availableCards.Count)]);
 	}
 
 	private Card ReturnAndRemove(Card card)
@@ -81,6 +82,18 @@ public class CardManager
 	public void MarkCardAvailable(Card card)
 	{
 		availableCards.Add(card);
+	}
+
+	public CardType GetCardType(string type)
+	{
+		foreach (CardType cardType in cardtypes)
+		{
+			if (cardType.ToString().Equals(type))
+			{
+				return cardType;
+			}
+		}
+		return CardType.Null;
 	}
 	
 }

@@ -19,6 +19,7 @@
             </e>
           </e>
         </e>
+        <e p="UnityManager.cs" t="Include" />
       </e>
       <e p="CodeOrganizationChallenge.sln" t="IncludeFlat" />
       <e p="Library" t="ExcludeRecursive" />

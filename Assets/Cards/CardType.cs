@@ -3,4 +3,5 @@
     Schoppen,
     Klaver,
     Ruiten,
+    Null,
 }

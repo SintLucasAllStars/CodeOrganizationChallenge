@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Deck
 {
@@ -36,15 +36,46 @@ public class Deck
         }
         else
         {
-            Card card = suitableCards[new Random().Next(suitableCards.Count)];
+            Card card = suitableCards[Random.Range(0, suitableCards.Count)];
             cards.Remove(card);
             CardManager.GetCardManager().SetCurrentPlayCards(card);
         }
     }
 
-    public bool AllowedCard(Card card)
+    public List<Card> GetCards()
     {
-        return GetSuitableCards(CardManager.GetCardManager().GetCurrentPlayCard()).Contains(card);
+        return cards;
+    }
+
+    public void RemoveFromDeck(Card card)
+    {
+        cards.Remove(card);
+    }
+
+    public Card GetCard(CardType cardType, int cardNumber)
+    {
+        foreach (Card card in cards)
+        {
+            if (card.GetCardType() == cardType && card.GetCardNumber() == cardNumber)
+            {
+                return card;
+            }
+        }
+
+        return null;
+    }
+
+    public void Combine(Card card1, Card card2)
+    {
+        cards.Add(card1.Combine(card2));
+        RemoveFromDeck(card1);
+        RemoveFromDeck(card2);
+        cards.Add(CardManager.GetCardManager().GetRandomAvailableCard());
+    }
+
+    public void PickNewCard()
+    {
+        cards.Add(CardManager.GetCardManager().GetRandomAvailableCard());
     }
     
 }
