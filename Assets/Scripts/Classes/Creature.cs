@@ -82,7 +82,7 @@ public class Creature : MonoBehaviour {
 		age = thisDNA.age;
 		#endregion
 
-		wm = GameObject.FindGameObjectWithTag ("World Manager").GetComponent<WorldManager>();
+		//wm = GameObject.FindGameObjectWithTag ("World Manager");
 
 		// Set initial rotation to a random degree (else they all walk in the same direction at start)
 		gameObject.transform.eulerAngles = new Vector3 (0,Random.Range(0,361),0);
@@ -95,7 +95,7 @@ public class Creature : MonoBehaviour {
 
 	public void Update(){
 
-		switch (LifeState) {
+		switch (currentState) {
 		case LifeState.alive:
 			Alive ();
 			Aging ();
