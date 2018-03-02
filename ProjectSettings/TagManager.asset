@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Puzzling Painting
   - PuzzlePainting
+  - Pit
   layers:
   - Default
   - TransparentFX
