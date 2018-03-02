@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour {
             }
             SetCursorState();
         }
-
+        // Interaction key
         if (Input.GetKey(KeyCode.E)) {
             ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, MaxTouchDistance)) {
