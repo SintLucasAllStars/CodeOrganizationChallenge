@@ -8,13 +8,12 @@ public class MainScript : MonoBehaviour {
 
     public static MainScript mainScript;
     public List<string> completedPuzzles;               // Completed puzzles list.
-    public GameObject player;                           // The player object (might be replaced).
     public Vector3 startingPosition, startingRotation;  // Starting position and rotation of the player - set in editor.
 
     Vector3 playerPosition;     /* Player position and rotation to be  */
     Quaternion playerRotation;  /*   saved when loading a new scene.   */
+    GameObject player;
 
-    // Replace with singleton - Kars' job btw
     void Awake() {
         if (mainScript == null)
         {
@@ -26,11 +25,13 @@ public class MainScript : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
     /// <summary>
     /// Creates an empty completed puzzles list and sets player starting position
     /// </summary>
     void Start() {
         completedPuzzles = new List<string>();
+        player = GameObject.Find("MainPlayer"); // Player object in the main scene should be called 'MainPlayer'
         playerPosition = startingPosition;
         playerRotation = Quaternion.Euler(startingRotation);
     }
@@ -53,8 +54,30 @@ public class MainScript : MonoBehaviour {
     public void FinishPuzzle(string puzzleName) {
         completedPuzzles.Add(puzzleName);
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
+        SceneManager.sceneLoaded += SetPlayerPosition;
+    }
 
-        // Should theoretically work, but player might not exist yet? NEEDS TESTING
-        player.transform.SetPositionAndRotation(playerPosition, playerRotation);
+    /// <summary>
+    /// Sets the player position back to where player was standing when a puzzle was loaded
+    /// </summary>
+    /// <param name="scene">The scene that was loaded</param>
+    /// <param name="mode">Required to work, but not used</param>
+    void SetPlayerPosition(Scene scene, LoadSceneMode mode) {
+        if (scene.name == "Main") {
+            player = GameObject.Find("MainPlayer");
+            player.transform.SetPositionAndRotation(playerPosition, playerRotation);
+        }
+    }
+
+    /// <summary>
+    /// Temporary function to load and unload the 'test' puzzle
+    /// </summary>
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.K)) {
+            LoadPuzzle("test");
+        }
+        if (Input.GetKeyDown(KeyCode.L)) {
+            FinishPuzzle("test");
+        }
     }
 }
