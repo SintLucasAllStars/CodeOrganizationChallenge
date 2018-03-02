@@ -9,7 +9,7 @@ public class Creature : MonoBehaviour
     {
         Omnivorous,
         Herbivorous,
-        Carnivore
+        Carnivorous
     };
     public enum Hostility                                                       //The feeling the creature has. They can either be friendly, neutral or hostile. This enum decides if a creature attacks, mates, or is able to do both.
     {
@@ -316,7 +316,7 @@ public class Creature : MonoBehaviour
                         other = hit.collider.gameObject;
                         Interact(hit.collider.gameObject);
                     }
-                    if(state == State.Hunting && type == Type.Carnivore)
+                    if(state == State.Hunting && type == Type.Carnivorous)
                     {                   
                             other = hit.collider.gameObject;
                             Interact(hit.collider.gameObject);
@@ -355,7 +355,7 @@ public class Creature : MonoBehaviour
             }
             if (state == State.Hunting)
             {
-                if (type == Type.Carnivore || type == Type.Omnivorous)
+                if (type == Type.Carnivorous || type == Type.Omnivorous)
                 {
                     AttackForFood(collision.gameObject);
                     hunger = 0;
