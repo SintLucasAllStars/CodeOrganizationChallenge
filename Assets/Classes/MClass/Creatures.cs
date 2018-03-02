@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Creatures : MonoBehaviour {
-	public enum EatingBehaviour {omnivore, carnivore, herbivore}; // determines what the creature eats, omnivore and carnivore increase aggression.
+	//public enum EatingBehaviour {omnivore, carnivore, herbivore}; // determines what the creature eats, omnivore and carnivore increase aggression.
 
 	//These are the variales used to create creatures that roam the world
-	public float speed; // You use this to determine how fast the creature moves through the map
 	public float size; // You use this to see how big and strong a creature is, a high size value also gives a bonus to combat efficiency
 	public float fertility; // You use this to see how much change a creature has to get a child
 	public float attractionRate; // You use this to see how many times a creature would try to breed
@@ -18,7 +17,8 @@ public class Creatures : MonoBehaviour {
 	Transform otherCreature;
 
 
-	public void OnTriggerEnter (Collider coll) { //template SHOULD BE IN ANIMALS AND HUMANS 
+	public void OnTriggerEnter (Collider coll) //template SHOULD BE IN ANIMALS AND HUMANS 
+	{ 
 		float engage;
         otherCreature = coll.gameObject.transform;
 		engage = aggression + Random.Range (1, 50); // determine what the creature is going to do.
@@ -26,7 +26,7 @@ public class Creatures : MonoBehaviour {
 			transform.position = Vector3.MoveTowards(transform.position, otherCreature.position, 5); //move towards the target. "needs tweaking on values"
 		}
 		if (engage < 49) { // Run away and try to flee from the target.
-			transform.position = Vector3.MoveTowards(transform.position, otherCreature.position, -5); //move away from the target. "needs tweaking on values"
+			transform.position = Vector3.MoveTowards (transform.position, otherCreature.position, -5); //move away from the target. "needs tweaking on values"
 		}
 	}
 }

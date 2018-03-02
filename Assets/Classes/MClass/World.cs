@@ -28,7 +28,7 @@ public class World{
     {
         for (int i = 0; i < Random.Range(40, 51); i++)
         {
-            animal = new Animals(Creatures.EatingBehaviour.omnivore, Random.Range(1, 100), Random.Range(1, 100), Random.Range(1, 100), Random.Range(6, 25), Random.Range(1, 100), prefabAnimal);
+			animal = new Animals(Random.Range(1, 20), Random.Range(1, 100), Random.Range(1, 100), Random.Range(6, 25), Random.Range(1, 100), prefabAnimal);
         }
     }
 }
