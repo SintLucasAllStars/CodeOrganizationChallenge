@@ -1,6 +1,6 @@
 # Project
 Kylian Dekker
-* Evolution and DNA - Spore is one of my childhood games, so I choose this one because I admire the features they have in the game.
+* Evolution and DNA - Spore is one of my childhood games, so I choose this one because I admire the features they have in the game. One of my goals was using OOP for the most part.
 
 ## Instructions
 To make your own creature you must make a script that inherits from the Creature script. Take a look at the example creatures
