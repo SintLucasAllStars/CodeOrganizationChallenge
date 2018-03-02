@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -181,7 +181,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dependancies:
   - test
-  mainScript: {fileID: 1566962857}
+--- !u!1001 &902197218
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -13.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865108389543558, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_TagString
+      value: PuzzlePainting
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &972973855
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,7 +713,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: 0

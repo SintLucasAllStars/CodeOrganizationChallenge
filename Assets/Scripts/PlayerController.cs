@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour {
     private float currentCameraRotationX = 0f;
     private Rigidbody rb;
 
+    float Distance;
+    Ray ray;
+    RaycastHit hit;
+
 
     void Start () {
         rb = GetComponent<Rigidbody>();
@@ -63,7 +67,15 @@ public class PlayerController : MonoBehaviour {
             }
             SetCursorState();
         }
+
+    if (Input.GetKey( KeyCode.E ) ){
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out hit, Distance)){
+            Debug.Log(hit);
+            }
+        }
     }
+
     void SetCursorState() {
         Cursor.lockState = wantedMode;
         // Hide cursor when locking

@@ -76,7 +76,7 @@ public class MainScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.K)) {
             LoadPuzzle("test");
         }
-        if (Input.GetKeyDown(KeyCode.L)) {
+        if (Input.GetKeyDown(KeyCode.G)) {
             FinishPuzzle("test");
         }
     }
