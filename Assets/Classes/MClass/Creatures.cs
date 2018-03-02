@@ -14,19 +14,4 @@ public class Creatures : MonoBehaviour {
 	public float combatEfficiency; // You use this to see how likely a creature is to win a fight
 	public float aggression; // You use this to determine how fast it detects creatures. A higher value will also make it more likely to attack a other creature
 
-	Transform otherCreature;
-
-
-	public void OnTriggerEnter (Collider coll) //template SHOULD BE IN ANIMALS AND HUMANS 
-	{ 
-		float engage;
-        otherCreature = coll.gameObject.transform;
-		engage = aggression + Random.Range (1, 50); // determine what the creature is going to do.
-		if (engage > 99) { // Approach the target and try to attack it.
-			transform.position = Vector3.MoveTowards(transform.position, otherCreature.position, 5); //move towards the target. "needs tweaking on values"
-		}
-		if (engage < 49) { // Run away and try to flee from the target.
-			transform.position = Vector3.MoveTowards (transform.position, otherCreature.position, -5); //move away from the target. "needs tweaking on values"
-		}
-	}
 }
