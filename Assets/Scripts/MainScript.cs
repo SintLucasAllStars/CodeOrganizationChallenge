@@ -73,11 +73,8 @@ public class MainScript : MonoBehaviour {
     /// Temporary function to load and unload the 'test' puzzle
     /// </summary>
     void Update() {
-        if (Input.GetKeyDown(KeyCode.K)) {
-            LoadPuzzle("test");
-        }
         if (Input.GetKeyDown(KeyCode.G)) {
-            FinishPuzzle("test");
+            FinishPuzzle("");
         }
     }
 }

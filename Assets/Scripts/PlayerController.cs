@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
     private float currentCameraRotationX = 0f;
     private Rigidbody rb;
 
-    float Distance;
+    public float MaxTouchDistance;
     Ray ray;
     RaycastHit hit;
 
@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour {
 
             cam.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
         }
+
         // this is for using your mouse again ingame
         if(Input.GetKeyDown(KeyCode.L)) {
             if(wantedMode == CursorLockMode.None) {
@@ -68,10 +69,14 @@ public class PlayerController : MonoBehaviour {
             SetCursorState();
         }
 
-    if (Input.GetKey( KeyCode.E ) ){
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit, Distance)){
-            Debug.Log(hit);
+        if (Input.GetKey(KeyCode.E)) {
+            ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, MaxTouchDistance)) {
+                //Debug.Log(hit.transform.parent.name);
+                PuzzleLoader loader = hit.transform.parent.GetComponent<PuzzleLoader>();
+                if (loader != null) {
+                    loader.OnUsed();
+                }
             }
         }
     }
