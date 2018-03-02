@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -181,6 +181,87 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dependancies:
   - test
+--- !u!1001 &576188572
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -13.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315080891542546, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865108389543558, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_TagString
+      value: PuzzlePainting
+      objectReference: {fileID: 0}
+    - target: {fileID: 1002293755362328, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_Name
+      value: PaintingFrame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1600731479828138, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_Name
+      value: PaintingImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865108389543558, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+      propertyPath: m_Name
+      value: Painting
+      objectReference: {fileID: 0}
+    - target: {fileID: 23178002759786140, guid: 4cb4ba9278878c94bb2d229b38a05016,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4e5afa6fb2d093641a6dcda3a4351e22, type: 2}
+    m_RemovedComponents:
+    - {fileID: 114147276328218284, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1 &576188573 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1865108389543558, guid: 4cb4ba9278878c94bb2d229b38a05016,
+    type: 2}
+  m_PrefabInternal: {fileID: 576188572}
+--- !u!114 &576188574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 576188573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f5c35c3950d4048ab10b1d81de97e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: test
 --- !u!1001 &902197218
 Prefab:
   m_ObjectHideFlags: 0
@@ -234,8 +315,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1865108389543558, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
       propertyPath: m_Name
-      value: Painting
+      value: LMBPainting
       objectReference: {fileID: 0}
+    - target: {fileID: 23178002759786140, guid: 4cb4ba9278878c94bb2d229b38a05016,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a5830cd15e74104eb8b3f83bcc8f642, type: 2}
     m_RemovedComponents:
     - {fileID: 114147276328218284, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4cb4ba9278878c94bb2d229b38a05016, type: 2}
