@@ -3,65 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Creature<T> where T : Creature
+public class Creature : MonoBehaviour
 {
-    public GameObject gameObject;
-    public T ScriptComponent;
-
-    public Creature(string name)
+    public enum Type        //The type of food the creature likes. It will still attack other creatures if it is hostile, but depending on this, it might eat or not eat it.
     {
-        gameObject = new GameObject(name);
-        ScriptComponent = gameObject.AddComponent<T>();
+        Omnivorous,
+        Herbivorous,
+        Carnivore
     }
-
-    public T GetEnemyType()
-    {
-        return ScriptComponent;
-    }
-}
-
-public abstract class Creature : MonoBehaviour
-{
-    public Rigidbody body;
-    public BoxCollider collider;
-    Animator anim;
-
-    public float speed;     //The speed of the creature.
-    public float attackSpeed;       //The attack speed of the creature
-    public float size;      //The size of the creature
-    public float intelligence;      //The intelligence of the creature
-    public float strength;      //The combat strength of the creature
-    public float health;        //The health points the creature has
-
-    public string species;      //The name of the species the creature represents
-    public enum Type
-    {
-        omnivorous,
-        herbivorous,
-        carnivore
-    }
-    public enum Hostility
+    public enum Hostility       //The feeling the creature has. They can either be friendly, neutral or hostile. This enum decides if a creature attacks, mates, or is able to do both.
     {
         Friendly,
         Neutral,
         Hostile
     }
+    public enum State       //This is just a state enum that explains what the creature is currently doing. After an attack from other creatures it will go to hit mode.
+    {
+        Walking,
+        Mating,
+        Fighting,
+        Hit
+    }
+
+    public Rigidbody body;      //The rigidbody for the creature.
+    public BoxCollider collider;        //The collider for the creature, might want to add a second collider for the triggers etc.
+    Animator anim;      //An animator in case someone wants to animate creatures.
+    public NavMeshAgent agent;      //A navmesh agent so that the creature walks around and avoids obstacles. Of course this is the easiest way to let an agent chase another agent too.
+    
+    public DNA dna;     //The DNA the creature has. This DNA will get values in other scripts such as Hoovy and Porcoo.
+        
     public Type type;
     public Hostility hostility;
-    public NavMeshAgent agent;
-
-    public Vector3 randomPos;
-
-    public enum State
-    {
-        walking,
-        mating,
-        fighting,
-        hit
-    }
     public State state;
 
-    public GameObject enemy;
+    public Vector3 randomPos;       //Just a vector3 that stores the random position the creature is walking to if it is in walking mode.
 
     private void Awake()
     {
@@ -77,12 +52,17 @@ public abstract class Creature : MonoBehaviour
         agent.acceleration = 20;
     }
 
+    /*
+    ######################
+    A function that checks which hostility the creature has. Neutral will take a random direction and either chooses to mate or attack.
+    ######################
+    */
     void Interact(GameObject monster)
     {
         switch (hostility)
         {
             case Hostility.Friendly:
-                state = State.mating;
+                state = State.Mating;
                 Mate(monster);
                 
                 break;
@@ -91,23 +71,20 @@ public abstract class Creature : MonoBehaviour
                 switch (random)
                 {
                     case 0:
-                        state = State.mating;
+                        state = State.Mating;
                         Mate(monster);
 
                         break;
                     case 1:
-                        state = State.fighting;
+                        state = State.Fighting;
                         Attack(monster);
 
                         break;
                 }
                 break;
             case Hostility.Hostile:
-                state = State.fighting;
+                state = State.Fighting;
                 Attack(monster);
-
-                break;
-            default:
 
                 break;
         }
@@ -115,30 +92,25 @@ public abstract class Creature : MonoBehaviour
 
     void Attack(GameObject monster)
     {
-        state = State.fighting;
+        state = State.Fighting;
         Creature monsterCreature = monster.GetComponent<Creature>();
-        enemy = monster;
-
     }
 
     void Mate(GameObject monster)
     {
-        monster.GetComponent<Creature>().state = State.mating;
+        if (monster.GetComponent<Creature>().hostility != Hostility.Hostile)
+        {
+            monster.GetComponent<Creature>().state = State.Mating;
+            GameObject Baby = new GameObject("Baby");
+            Baby.AddComponent<Creature>();
+            Baby.GetComponent<Creature>().dna = new DNA(dna.MergeStats(monster.GetComponent<Creature>().dna));
+
+        }
     }
 
     private void Update()
     {
-        if(enemy == null)
-        {
-            state = State.walking;
-        }
-
-        if(health < 1)
-        {
-            Destroy(this.gameObject);
-        }
-
-        if (state == State.walking)
+        if (state == State.Walking)
         {
             if (agent.remainingDistance < 0.5)
             {
@@ -147,11 +119,6 @@ public abstract class Creature : MonoBehaviour
                 randomPos = new Vector3(x, transform.position.y, z);
             }
             agent.SetDestination(randomPos);
-
-        }
-        if (state == State.fighting)
-        {
-            agent.SetDestination(enemy.transform.position);
 
         }
 
@@ -164,11 +131,10 @@ public abstract class Creature : MonoBehaviour
             if (hit.collider.gameObject.CompareTag("Character"))
             {
 
-                if(state == State.walking)
+                if(state == State.Walking)
                 {
-                    state = State.fighting;
-                    enemy = hit.collider.gameObject;
-                    Debug.Log("Hit: " + hit.collider.gameObject.name);
+                    Interact(hit.collider.gameObject);
+                    Debug.Log(gameObject.name + " has seen " + hit.collider.gameObject.name);
                 }
             }
 
@@ -176,25 +142,12 @@ public abstract class Creature : MonoBehaviour
 
     }
 
-    IEnumerator GetHit()
-    {
-        state = State.hit;
-        yield return new WaitForSeconds(2);
-        state = State.walking;
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Character")
+        if(collision.gameObject.CompareTag("Character"))
         {
-            if(state == State.fighting)
-            {
-                Instantiate(Resources.Load<GameObject>("Blood"), enemy.transform.position, enemy.transform.rotation);
-                enemy.GetComponent<Creature>().health = enemy.GetComponent<Creature>().health - strength;
-                enemy.GetComponent<Creature>().StartCoroutine(GetHit());
-                Debug.Log(collision.gameObject.name + " got hit and has " + enemy.GetComponent<Creature>().health + " health left and his state is " + enemy.GetComponent<Creature>().state);
-                Debug.Log("heavy's state is " + state);
-            }
+            Interact(collision.gameObject);
+
         }
     }
 }
