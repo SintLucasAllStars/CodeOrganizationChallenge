@@ -21,5 +21,7 @@ KNOWN BUGS:
 
 1: Sometimes when starting the game portals will spawn in eachother.
 
+2: In the EscapeRoom puzzle you wont die when the room gets too small.
+
 
 Also when finishing all the available puzzles nothing happens.

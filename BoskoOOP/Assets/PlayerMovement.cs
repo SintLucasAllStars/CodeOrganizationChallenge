@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (col.gameObject.tag == "Main")
 		{
+			GameManager.closeIn = false;
 			Portals.show = true;
 			SceneManager.LoadScene ("PuzzleGame2D");
 		}

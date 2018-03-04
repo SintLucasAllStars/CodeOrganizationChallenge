@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject player;
 	public GameObject cube;
 	public GameObject pressurePlate;
+	public GameObject border;
+	public static bool closeIn = false;
 	public GameObject[] mazes = new GameObject[5];
 	public static bool spawnDoor = false;
 
@@ -73,17 +75,22 @@ public class GameManager : MonoBehaviour {
 
 	void Update () 
 	{ 
-		
+		if (closeIn == true)
+		{
+			border.transform.localScale += new Vector3(-0.0005f, -0.0005f, 0);
+		}
 	}
 
 	public void LoadNewPuzzle()
 	{
 		thisPuzzle = new ClassPuzzle();
 		Debug.Log (thisPuzzle.currentPuzzle);
+
 		if (thisPuzzle.currentPuzzle == "EscapeRoom")
 		{
 			EscapeRoom ();
 		}
+
 		if (thisPuzzle.currentPuzzle == "Maze")
 		{
 			Maze ();
@@ -106,6 +113,8 @@ public class GameManager : MonoBehaviour {
 	IEnumerator SpawnKey()
 	{
 		yield return new WaitForSeconds (0.1f);
+		border = GameObject.Find("Border");
+		closeIn = true;
 		Instantiate (player, new Vector2 (-7.5f, -3.5f), Quaternion.identity);
 		Instantiate (key, new Vector2 (thisEscapeRoom.ObjectX, thisEscapeRoom.ObjectY), Quaternion.identity);
 	}
