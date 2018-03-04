@@ -7,11 +7,15 @@ public class GameManager : MonoBehaviour {
 
 	public ClassPuzzle thisPuzzle;
 	public ClassPuzzle centralRoom;
+	public ClassMaze thisMaze;
 	public ClassEscapeRoom thisEscapeRoom;
 
 	public bool puzzleComplete;
 	public GameObject door;
 	public GameObject key;
+	public GameObject player;
+	public GameObject[] mazes = new GameObject[5];
+	public static bool spawnDoor = false;
 
 
 	#region SingleTon
@@ -52,7 +56,16 @@ public class GameManager : MonoBehaviour {
 		thisPuzzle = new ClassPuzzle ("MainScene");
 		for (int i = 0; i <  thisPuzzle.totalPuzzleRooms; i++) 
 		{
-			Instantiate (door, new Vector2 (Random.Range (-8, 8), Random.Range (-4, 4)), Quaternion.identity);
+			float x = 6;
+			float y = 7;
+			int random;
+			random = Random.Range (1, 3);
+			if (random == 1) {
+				Instantiate (door, new Vector2 (Random.Range(-x, y) , 4), Quaternion.identity);
+			} 
+			if (random == 2) {
+				Instantiate (door, new Vector2 (Random.Range(x, -y) , -4), Quaternion.identity);
+			}
 		}
 		centralRoom = thisPuzzle;
 	}
@@ -70,6 +83,10 @@ public class GameManager : MonoBehaviour {
 		{
 			EscapeRoom ();
 		}
+		if (thisPuzzle.currentPuzzle == "Maze")
+		{
+			Maze ();
+		}
 	}
 
 	#region EscapeRoom
@@ -82,8 +99,28 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator SpawnKey()
 	{
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (0.1f);
+		Instantiate (player, new Vector2 (-7.5f, -3.5f), Quaternion.identity);
 		Instantiate (key, new Vector2 (thisEscapeRoom.keyPosX, thisEscapeRoom.keyPosY), Quaternion.identity);
+	}
+	#endregion
+
+	#region Maze
+	public void Maze()
+	{
+		SceneManager.LoadScene ("RandomPuzzle");
+		thisMaze = new ClassMaze ();
+		StartCoroutine (Spawn ());
+	}
+
+	IEnumerator Spawn()
+	{
+		yield return new WaitForSeconds (0.1f);
+		spawnDoor = true;
+		int mazeNumber;
+		mazeNumber = Random.Range (0, 5);
+		Instantiate (mazes [mazeNumber], transform.position, transform.rotation);
+		Instantiate (player, new Vector2 (thisMaze.playerLocX, thisMaze.playerLocY), Quaternion.identity); ;
 	}
 	#endregion
 

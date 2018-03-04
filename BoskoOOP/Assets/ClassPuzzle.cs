@@ -24,7 +24,7 @@ public class ClassPuzzle
 		if (wantedPuzzle == "MainScene") 
 		{
 			isCompleted = true;
-			totalPuzzleRooms = Random.Range (1, 5);
+			totalPuzzleRooms = Random.Range (3, 5);
 		}
 	}
 }
