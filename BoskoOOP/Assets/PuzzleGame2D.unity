@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzleComplete: 0
-  door: {fileID: 1056353900516526, guid: b3a91172cb4d0ab408d19d9a15277614, type: 2}
+  door: {fileID: 1020309292878188, guid: b3a91172cb4d0ab408d19d9a15277614, type: 2}
   key: {fileID: 1905532330346202, guid: 325b085927a471e4781502ab73cbd466, type: 2}
   player: {fileID: 1686784779833272, guid: bc15999d6e732224f9813d2a5c7ed0ed, type: 2}
   mazes:
@@ -305,7 +305,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &354976969
 Prefab:
@@ -386,7 +386,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4046783045969312, guid: bc15999d6e732224f9813d2a5c7ed0ed, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc15999d6e732224f9813d2a5c7ed0ed, type: 2}
