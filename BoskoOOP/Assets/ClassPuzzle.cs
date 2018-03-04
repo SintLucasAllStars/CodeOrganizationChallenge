@@ -5,7 +5,7 @@ using UnityEngine;
 public class ClassPuzzle 
 {
 	public bool isCompleted;
-	public string[] puzzleType = new string[] {"Maze", "EscapeRoom", "??", "MainScene"};
+	public string[] puzzleType = new string[] {"Maze", "EscapeRoom", "PushObject", "MainScene"};
 	public string currentPuzzle;
 	public int totalPuzzleRooms;
 

@@ -14,9 +14,10 @@ public class GameManager : MonoBehaviour {
 	public GameObject door;
 	public GameObject key;
 	public GameObject player;
+	public GameObject cube;
+	public GameObject pressurePlate;
 	public GameObject[] mazes = new GameObject[5];
 	public static bool spawnDoor = false;
-
 
 	#region SingleTon
 
@@ -87,6 +88,11 @@ public class GameManager : MonoBehaviour {
 		{
 			Maze ();
 		}
+
+		if (thisPuzzle.currentPuzzle == "PushObject")
+		{
+			PushObject ();
+		}
 	}
 
 	#region EscapeRoom
@@ -101,7 +107,7 @@ public class GameManager : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (0.1f);
 		Instantiate (player, new Vector2 (-7.5f, -3.5f), Quaternion.identity);
-		Instantiate (key, new Vector2 (thisEscapeRoom.keyPosX, thisEscapeRoom.keyPosY), Quaternion.identity);
+		Instantiate (key, new Vector2 (thisEscapeRoom.ObjectX, thisEscapeRoom.ObjectY), Quaternion.identity);
 	}
 	#endregion
 
@@ -124,4 +130,20 @@ public class GameManager : MonoBehaviour {
 	}
 	#endregion
 
+	#region Push
+	public void PushObject()
+	{
+			SceneManager.LoadScene ("RandomPuzzle");
+			thisEscapeRoom = new ClassEscapeRoom ();
+			StartCoroutine (SpawnCube ());
+	}
+
+	IEnumerator SpawnCube()
+	{
+			yield return new WaitForSeconds (0.1f);
+			Instantiate (player, new Vector2 (0, 0), Quaternion.identity);
+			Instantiate (cube, new Vector2 (0, 2), Quaternion.identity);
+			Instantiate (pressurePlate, new Vector2 (thisEscapeRoom.ObjectX, thisEscapeRoom.ObjectY), transform.rotation);
+	}
+	#endregion
 }

@@ -5,16 +5,14 @@ using UnityEngine;
 public class ClassEscapeRoom 
 {
 
-	public float keyPosX;
-	public float keyPosY;
-	public bool haveKey;
+	public float ObjectX;
+	public float ObjectY;
 
 	public ClassEscapeRoom()
 	{
 		
-		keyPosX = Random.Range (-7, 8);
-		keyPosY = Random.Range (-3, 4);
-		haveKey = false;
+		ObjectX = Random.Range (-7, 8);
+		ObjectY = Random.Range (-3, 4);
 
 	}
 
