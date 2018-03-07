@@ -13,7 +13,7 @@ public class Cards{
     Sprite cardSprite;
     GameObject gameObject;
 
-    public Cards(CardType cardType, int health, int damage)
+    public Cards(CardType cardType, int health, int damage, GameObject Card)
     {
         active = true;
     }
@@ -25,4 +25,9 @@ public class Cards{
 
         }
     }
+
+    //public Cards Combine(Cards other)
+    //{
+            
+    //}
 }
