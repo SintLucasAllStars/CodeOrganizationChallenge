@@ -68,7 +68,10 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+<<<<<<< HEAD
   m_DynamicOccludee: 1
+=======
+>>>>>>> 77715660bb5cd0c3b6cd4bb85aeeca7746e7daee
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -84,7 +87,10 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+<<<<<<< HEAD
   m_StitchLightmapSeams: 0
+=======
+>>>>>>> 77715660bb5cd0c3b6cd4bb85aeeca7746e7daee
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
