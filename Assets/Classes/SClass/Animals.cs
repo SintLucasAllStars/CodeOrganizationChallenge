@@ -6,8 +6,9 @@ using UnityEngine;
 public class Animals : Creatures {
 	float instinct;
     GameObject currentAnimal;
-    Vector3 currentDest;
-    Transform otherCreature;
+
+	Vector3 currentDest;
+	Transform otherCreature;
 
     float attractionRate;
 
@@ -32,21 +33,21 @@ public class Animals : Creatures {
 
         currentAnimal.GetComponent<SphereCollider>().radius = aggression / 5; //sets the detection radius
 
-        Walking();
+        //Walking();
     }
 
-    public void Walking()
-    {
-        Vector3 Destination = new Vector3(Random.Range(499, -499), 3, Random.Range(499, -499));
-        currentDest = Destination;
-        currentAnimal.GetComponent<NavMeshAgent>().SetDestination(Destination);
-    }
+	/*public void Walking()
+	{
+		Vector3 Destination = new Vector3(Random.Range(499, -499), 3, Random.Range(499, -499));
+		currentDest = Destination;
+		GetComponent<NavMeshAgent>().SetDestination(Destination);
+	}
 
     public void LateUpdate()
     {
         if (currentAnimal.transform.position == currentDest)
             Walking();
-    }
+    }*/
 
     public void OnTriggerEnter(Collider coll)
     {

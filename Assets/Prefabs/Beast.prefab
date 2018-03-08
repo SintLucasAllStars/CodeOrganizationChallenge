@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 135654548931684618}
   - component: {fileID: 54571117425161624}
   - component: {fileID: 195046345962860526}
+  - component: {fileID: 114721065781266448}
   m_Layer: 0
   m_Name: Beast
   m_TagString: Untagged
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1097763167022774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 57.368744, y: -1.6973903, z: -91.118935}
+  m_LocalPosition: {x: 245.84245, y: 162.41473, z: 87.17377}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -113,6 +114,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114721065781266448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1097763167022774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5693c8af9f1fa44820ccdffdd0aed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aggression: 0
+  attractionRate: 0
+  combatEfficiency: 0
+  fertility: 0
 --- !u!135 &135654548931684618
 SphereCollider:
   m_ObjectHideFlags: 1

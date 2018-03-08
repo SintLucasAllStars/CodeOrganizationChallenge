@@ -6,12 +6,19 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour {
 
-	RaycastHit hit;
+	RaycastHit 		hit;
 
-	NavMeshAgent agent;
+	NavMeshAgent 	agent;
 
-	Transform target;
-	public Vector3 targetPos;
+	Transform 		target;
+
+	public float 	aggression;
+	public float	attractionRate;
+	public float 	combatEfficiency;
+	public float 	fertility;
+
+	public Vector3 currentDest;
+	Transform otherCreature;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +26,16 @@ public class EnemyAI : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		
+	}
+	public void LateUpdate()
+	{
+		if (agent.remainingDistance < 0.5f) 
+		{
+			currentDest = new Vector3 (Random.Range (499, -499), 3, Random.Range (499, -499));
+			GetComponent<NavMeshAgent> ().SetDestination (currentDest);
+		}
 	}
 }

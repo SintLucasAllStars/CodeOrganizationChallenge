@@ -14,7 +14,8 @@ public class FoodBush : MonoBehaviour {
 	{
 		transform.localScale = new Vector3 (maxFood, maxFood, maxFood);
 		StartCoroutine (GrowFood());
-		MeshRenderer colorFoodCheck = GetComponent<MeshRenderer> ();
+		colorFoodCheck = GetComponent<MeshRenderer> ();
+
 	}
 
 	void SetBush (float mf, float fr)
@@ -36,9 +37,10 @@ public class FoodBush : MonoBehaviour {
 	private IEnumerator GrowFood () 
 	{
 		yield return new WaitForSeconds(foodRecharge);
-		if (currentFood < maxFood) 
+		if (currentFood > maxFood) 
 		{
 			currentFood++;
+			Debug.Log ("Food Added");
 			colorFoodCheck.material.SetColor ("_Color", new Color (currentFood / maxFood, 0, 0));
 		}
 		StartCoroutine (GrowFood());
