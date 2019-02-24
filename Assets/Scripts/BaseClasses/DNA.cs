@@ -20,20 +20,12 @@ public enum FoodType
 public class DNA
 {
     //Variables
-    public float speed;
-    public float Size;
-    public float Strength;
-    public float Aggresion;
-    public GenderType Gender;
-    public FoodType foodType;
-    public Color skinColor;
-
-
-
-    public DNA()
-    {
-    
-    }
-
+    public float speed = 4;
+    public float Size = 1;
+    public float Strength = 2;
+    public float Aggresion = 1;
+    public GenderType Gender = GenderType.Male;
+    public FoodType foodType = FoodType.Omnivore;
+    public Color skinColor = Color.white;
 
 }

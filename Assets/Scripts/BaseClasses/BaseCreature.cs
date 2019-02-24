@@ -17,9 +17,15 @@ public class BaseCreature : MonoBehaviour
     void Start()
     {
         navAgent = GetComponent<NavMeshAgent>();
+
+     
+
         Genes.Gender = gender;
         Genes.foodType = foodType;
-        
+
+        Genes.skinColor = Random.ColorHSV();
+        Mesh.GetComponent<MeshRenderer>().material.color = Genes.skinColor;
+
     }
 
     // Update is called once per frame
