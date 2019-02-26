@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum GenderType
 {
@@ -16,16 +17,27 @@ public enum FoodType
 
 }
 
+[System.Serializable]
+public struct Genes
+{
 
-public class DNA
+    public float speed;
+    public float Size;
+    public float Strength;
+    public float Aggresion;
+    public float HormoneLevel;
+    public GenderType Gender;
+    public FoodType foodType;
+    public Color skinColor;
+
+
+}
+
+public class DNA 
 {
     //Variables
-    public float speed = 4;
-    public float Size = 1;
-    public float Strength = 2;
-    public float Aggresion = 1;
-    public GenderType Gender = GenderType.Male;
-    public FoodType foodType = FoodType.Omnivore;
-    public Color skinColor = Color.white;
 
+    public Genes genes;
+     
+   
 }

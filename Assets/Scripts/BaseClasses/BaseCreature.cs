@@ -8,32 +8,31 @@ public class BaseCreature : MonoBehaviour
 {
     //AI
     NavMeshAgent navAgent;
-    public DNA Genes = new DNA();
-    public GenderType gender;
-    public FoodType foodType;
+    public Genes myGenes;
+    public DNA myDNA = new DNA();
     public GameObject Mesh;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        navAgent = GetComponent<NavMeshAgent>();
 
-     
+       navAgent = GetComponent<NavMeshAgent>();
+       myDNA.genes = myGenes;
+        myDNA.genes.skinColor = Random.ColorHSV();
 
-        Genes.Gender = gender;
-        Genes.foodType = foodType;
-
-        Genes.skinColor = Random.ColorHSV();
-        Mesh.GetComponent<MeshRenderer>().material.color = Genes.skinColor;
+        
+        Mesh.GetComponent<MeshRenderer>().material.color = myDNA.genes.skinColor;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        Wander(15);         
+        Wander(15);
     }
 
+    //lets creature walk randomly
     void Wander(float maxDistance)
     {
         Vector3 randomDirection = Random.insideUnitSphere * maxDistance;
@@ -41,7 +40,7 @@ public class BaseCreature : MonoBehaviour
 
         if (navAgent)
         {
-            if(transform.position == navAgent.destination)
+            if (transform.position == navAgent.destination)
             {
                 randomDirection += transform.position;
                 NavMesh.SamplePosition(randomDirection, out hit, maxDistance, 1);
@@ -51,9 +50,27 @@ public class BaseCreature : MonoBehaviour
         }
     }
 
+    void SetGenes()
+    {
+       
+    }
 
+   //Check if creature or food is nearby
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("Creature"))
+        {
+            var otherCreature = other.GetComponent<BaseCreature>();
+           
+            
+
+        }
+        else if (other.gameObject.CompareTag("Food"))
+        {
+          
+        }
     }
 }
+
+    
+    
