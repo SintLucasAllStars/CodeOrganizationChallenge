@@ -51,6 +51,9 @@ public class BaseCreature : MonoBehaviour
         }
     }
 
- 
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
 }
