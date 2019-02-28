@@ -74,9 +74,12 @@ MonoBehaviour:
     Aggresion: 1
     HormoneLevel: 1
     Gender: 0
-    foodType: 0
+    foodType: 2
     skinColor: {r: 1, g: 0.20801412, b: 0, a: 0}
   Mesh: {fileID: 5039614721503268076}
+  babyPrefab: {fileID: 5039614720894424441, guid: 17a9c1d32108e334887b5f7220595bd2,
+    type: 3}
+  SightRadius: 10
 --- !u!1 &5039614721503268076
 GameObject:
   m_ObjectHideFlags: 0

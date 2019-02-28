@@ -29,6 +29,7 @@ public struct Genes
     public GenderType Gender;
     public FoodType foodType;
     public Color skinColor;
+    
 
 
 }
