@@ -33,8 +33,6 @@ public class DNA : MonoBehaviour
 			Gene.m_Longevity = Random.Range(1, 100);
 			Gene.m_Endurance = Random.Range(1, 100);
 			Gene.m_Size = Random.Range(1, 100);
-			Gene.isMale = true;
-			Gene.m_ID = parentA.m_ID;
 
 		}
 		else if (m_Evolution == 2)
@@ -44,26 +42,21 @@ public class DNA : MonoBehaviour
 			Gene.m_Longevity = Random.Range(1, 100);
 			Gene.m_Endurance = Random.Range(1, 100);
 			Gene.m_Size = Random.Range(1, 100);
-			Gene.isMale = false;
-			Gene.m_ID = parentA.m_ID;
 
 		}
 		else if (m_Evolution == 3)
 		{
 			Gene = parentB;
-			Gene.m_ID = parentA.m_ID;
 
 		}
 		else if (m_Evolution == 4)
 		{
 			Gene = parentA;
-			Gene.m_ID = parentA.m_ID;
 
 		}
 		else if (m_Evolution == 5)
 		{
 			Gene = parentA;
-			Gene.m_ID = parentA.m_ID;
 
 		}
 
@@ -77,15 +70,13 @@ public class DNA : MonoBehaviour
 [System.Serializable]
 public struct Attributes
 {
-	public enum Food
+	public enum Diet
 	{
 		herbivore, omnivore, carnivore
 
 	};
 
-	public int m_ID; 
-
-	public bool isMale; 
+	public bool isMale;
 
 	public double m_Strength;
 
@@ -97,6 +88,6 @@ public struct Attributes
 
 	public double m_Size;
 
-
+	public double m_Aggression; 
 
 }
