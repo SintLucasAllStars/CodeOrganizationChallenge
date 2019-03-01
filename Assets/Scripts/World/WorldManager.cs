@@ -29,7 +29,7 @@ public class WorldManager : MonoBehaviour
 
     IEnumerator FoodSpawnDelay()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
         SpawnFoodAtRandomPoint();
     }
 }
