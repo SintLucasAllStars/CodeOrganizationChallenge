@@ -102,7 +102,7 @@ public class DNA
 		if (m_Rand >= 5.5f)
 		{
 			m_Genes.Shape = _DadGenes.Shape;
-}
+		}
 		else if (m_Rand < 5.5f && m_Rand > 1f)
 		{
 			m_Genes.Shape = _MomGenes.Shape;

@@ -7,6 +7,8 @@ public class Creature : MonoBehaviour
 {
 	public DNA m_DNA;
 
+	private World m_World;
+
 	public enum EState { Fighting, Mating, Eating, Wandering, DEAD };
 	public EState eCurState = EState.Wandering;
 
@@ -32,6 +34,7 @@ public class Creature : MonoBehaviour
 	private bool m_HasStartedMating;
 	private float m_LastMated;
 
+	private float m_TimeAlive;
 	public int m_Age;
 
 	float nearestDist;
@@ -41,27 +44,26 @@ public class Creature : MonoBehaviour
 	[Range(0, 100)]
 	public float m_Energy = 100;
 
-	private void Start()
+	private void Awake()
 	{
+		m_World = GameObject.Find("World").GetComponent<World>();
 		m_Agent = GetComponent<NavMeshAgent>();
 		m_Filter = GetComponent<MeshFilter>();
-		SetUp(false);
 		StartCoroutine(MinusEnergy());
 		StartCoroutine(CheckIfHasMoved());
 		m_Point = transform.position;
 	}
 
-	private void SetUp(bool _hasParents)
+	public void SetUpP(Genes _Dad, Genes _Mom)
 	{
-		if(_hasParents)
-		{
-			//create new DNA from parents
-			//m_DNA = new DNA(DadGenes, MomGenes);
-		}
-		else
-		{
-			m_DNA = new DNA();
-		}
+		m_DNA = new DNA(_Dad, _Mom);
+		m_Filter.mesh = m_DNA.m_Genes.Shape;
+		gameObject.AddComponent<MeshCollider>();
+	}
+
+	public void SetUpR()
+	{
+		m_DNA = new DNA();
 		m_Filter.mesh = m_DNA.m_Genes.Shape;
 		gameObject.AddComponent<MeshCollider>();
 	}
@@ -117,7 +119,11 @@ public class Creature : MonoBehaviour
 				// Just stand still (a T-rex can only see moving things)
 				break;
 		}
-		m_Age = (int)(Time.time / 3f);
+		m_TimeAlive += Time.deltaTime / 3;
+		m_Age = (int)m_TimeAlive;
+
+		if (m_Age > 95) eCurState = EState.DEAD;
+		if (m_Energy < 5) eCurState = EState.DEAD;
 	}
 
 	private Vector3 RandomNavPos()
@@ -177,7 +183,7 @@ public class Creature : MonoBehaviour
 					}
 					else if (m_DNA.m_Genes.Gender != nearestTarget.GetComponent<Creature>().m_DNA.m_Genes.Gender && Time.time > m_LastMated)
 					{
-						if (Random.Range(0f, 10f) >= (4f / 4f))
+						if (Random.Range(0f, 10f) >= (4f / 3f))
 						{
 							m_OtherCreature = nearestTarget.GetComponent<Creature>();
 							//Mate with the other creature
@@ -249,10 +255,11 @@ public class Creature : MonoBehaviour
 	{
 		yield return new WaitForSeconds(4.5f);
 		m_LastMated = Time.time + 20f;
-		//create child
-		m_OtherCreature.eCurState = EState.Wandering;
+		if(m_DNA.m_Genes.Gender == Genes.Egender.Male)
+		{
+			m_World.MakeChild(transform.position, m_DNA.m_Genes, m_OtherCreature.m_DNA.m_Genes);
+		}
 		eCurState = EState.Wandering;
-		m_OtherCreature.m_HasStartedMating = false;
 		m_HasStartedMating = false;
 	}
 
@@ -281,21 +288,21 @@ public class Creature : MonoBehaviour
 		}
 	}
 
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.white;
-		Gizmos.DrawWireSphere(transform.position, m_ViewRadius);
+	//private void OnDrawGizmos()
+	//{
+	//	Gizmos.color = Color.white;
+	//	Gizmos.DrawWireSphere(transform.position, m_ViewRadius);
 
-		Vector3 viewAngleA = DirFromAngle(-m_ViewAngle / 2, false);
-		Vector3 viewAngleB = DirFromAngle(m_ViewAngle / 2, false);
+	//	Vector3 viewAngleA = DirFromAngle(-m_ViewAngle / 2, false);
+	//	Vector3 viewAngleB = DirFromAngle(m_ViewAngle / 2, false);
 
-		Gizmos.DrawLine(transform.position, transform.position + viewAngleA * m_ViewRadius);
-		Gizmos.DrawLine(transform.position, transform.position + viewAngleB * m_ViewRadius);
+	//	Gizmos.DrawLine(transform.position, transform.position + viewAngleA * m_ViewRadius);
+	//	Gizmos.DrawLine(transform.position, transform.position + viewAngleB * m_ViewRadius);
 
-		Gizmos.color = Color.red;
-		foreach (Transform visibleTarget in visibleTargets)
-		{
-			Gizmos.DrawLine(transform.position, visibleTarget.position);
-		}
-	}
+	//	Gizmos.color = Color.red;
+	//	foreach (Transform visibleTarget in visibleTargets)
+	//	{
+	//		Gizmos.DrawLine(transform.position, visibleTarget.position);
+	//	}
+	//}
 }
