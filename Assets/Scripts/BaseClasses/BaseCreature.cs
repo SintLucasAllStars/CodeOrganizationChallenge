@@ -12,7 +12,8 @@ public class BaseCreature : MonoBehaviour
         Wander,
         Eat,
         Attack,
-        Mate
+        Mate,
+        CoolDown
     }
 
     //AI
@@ -49,7 +50,7 @@ public class BaseCreature : MonoBehaviour
         if (m_nearestCreature)
         {
             var otherCreature = m_nearestCreature.GetComponent<BaseCreature>();
-            if (otherCreature.myGenes.Gender == myGenes.Gender)
+            if (otherCreature.myGenes.Gender == myGenes.Gender && !m_Mating)
             {
                 m_AiState = AIState.Attack;
             }
@@ -78,6 +79,10 @@ public class BaseCreature : MonoBehaviour
                 break;
             case AIState.Mate:
                 Mate(m_nearestCreature.GetComponent<BaseCreature>());
+                
+                break;
+            case AIState.CoolDown:
+                Wander(15);
                 break;
             case AIState.Eat:
                 //Eat Something
@@ -106,6 +111,7 @@ public class BaseCreature : MonoBehaviour
     //AttackFunction
     void Attack(BaseCreature Enemy)
     {
+
         if (Enemy.myGenes.Strength > myGenes.Strength)
         {
             Destroy(this.gameObject);
@@ -130,24 +136,18 @@ public class BaseCreature : MonoBehaviour
             {
 
                 var child = Instantiate(babyPrefab, this.transform.position, Quaternion.identity);
+                
                 var childGenes = child.GetComponent<BaseCreature>();
+                
                 childGenes.myGenes.Gender = Creature.myGenes.Gender;
                 childGenes.myGenes.foodType = myGenes.foodType;
                 childGenes.myGenes.skinColor = myGenes.skinColor;
-                childGenes.myGenes.Strength = Creature.myGenes.Strength;
-
-               
-
-                m_nearestCreature = null;
-                m_AiState = AIState.Wander;
-
+                childGenes.MatingCoolDown(5);
+     
             }
-        
-        else
-        {
             m_nearestCreature = null;
-            m_AiState = AIState.Wander;
-        }
+         StartCoroutine(MatingCoolDown(5));
+
 
     }
 
@@ -174,6 +174,15 @@ public class BaseCreature : MonoBehaviour
 
         
     }
+
+
+    IEnumerator MatingCoolDown(float waitTime)
+    {
+        m_AiState = AIState.CoolDown;
+        yield return new WaitForSeconds(waitTime);
+        m_AiState = AIState.Wander;
+    }
+
 }
 
     
