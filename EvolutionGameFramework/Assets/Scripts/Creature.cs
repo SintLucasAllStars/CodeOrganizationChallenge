@@ -30,6 +30,9 @@ public class Creature : MonoBehaviour
 	private Creature m_OtherCreature;
 
 	private bool m_HasStartedMating;
+	private float m_LastMated;
+
+	public int m_Age;
 
 	float nearestDist;
 	Transform nearestTarget;
@@ -88,7 +91,7 @@ public class Creature : MonoBehaviour
 					if (Vector3.Distance(transform.position, m_OtherCreature.transform.position) < 0.5f && !m_HasStartedMating)
 					{
 						m_HasStartedMating = true;
-
+						StartCoroutine(InMate());
 					}
 				}
 				break;
@@ -114,6 +117,7 @@ public class Creature : MonoBehaviour
 				// Just stand still (a T-rex can only see moving things)
 				break;
 		}
+		m_Age = (int)(Time.time / 3f);
 	}
 
 	private Vector3 RandomNavPos()
@@ -153,35 +157,38 @@ public class Creature : MonoBehaviour
 		}
 		if(nearestTarget != null)
 		{
-			if(nearestTarget.tag == "Food" && m_Energy < 60f)
+			if (nearestTarget.tag == "Food" && m_Energy < 60f)
 			{
 				eCurState = EState.Eating;
 			}
-			else if(nearestTarget.tag == "Creature")
+			else if (nearestTarget.tag == "Creature")
 			{
-				if(Random.Range(1f, 10f) < (m_DNA.m_Genes.Agression / 4f))
+				if (nearestTarget.GetComponent<Creature>().eCurState == EState.Wandering)
 				{
-					m_OtherCreature = nearestTarget.GetComponent<Creature>();
-					//Attack other creature
-					//let other creature know they will fight
-					// other creature will go along with it
-					m_OtherCreature.eCurState = EState.Fighting;
-					eCurState = EState.Fighting;
-					Debug.Log("Start Fight");
-				}
-				else if(m_DNA.m_Genes.Gender != nearestTarget.GetComponent<Creature>().m_DNA.m_Genes.Gender)
-				{
-					if(Random.Range(0f, 10f) >= (4f / 4f))
+					if (Random.Range(1f, 10f) < (m_DNA.m_Genes.Agression / 4f))
 					{
 						m_OtherCreature = nearestTarget.GetComponent<Creature>();
-						//Mate with the other creature
-						m_OtherCreature.eCurState = EState.Mating;
-						eCurState = EState.Mating;
-						Debug.Log("Lets Fuck");
+						//Attack other creature
+						//let other creature know they will fight
+						// other creature will go along with it
+						m_OtherCreature.eCurState = EState.Fighting;
+						eCurState = EState.Fighting;
+						Debug.Log("Start Fight");
+					}
+					else if (m_DNA.m_Genes.Gender != nearestTarget.GetComponent<Creature>().m_DNA.m_Genes.Gender && Time.time > m_LastMated)
+					{
+						if (Random.Range(0f, 10f) >= (4f / 4f))
+						{
+							m_OtherCreature = nearestTarget.GetComponent<Creature>();
+							//Mate with the other creature
+							m_OtherCreature.eCurState = EState.Mating;
+							eCurState = EState.Mating;
+							Debug.Log("Lets Fuck");
+						}
+						//do nothing just wander around
 					}
 					//do nothing just wander around
 				}
-				//do nothing just wander around
 			}
 		}
 	}
@@ -236,6 +243,17 @@ public class Creature : MonoBehaviour
 			}
 			m_OtherCreature = null;
 		}
+	}
+
+	private IEnumerator InMate()
+	{
+		yield return new WaitForSeconds(4.5f);
+		m_LastMated = Time.time + 20f;
+		//create child
+		m_OtherCreature.eCurState = EState.Wandering;
+		eCurState = EState.Wandering;
+		m_OtherCreature.m_HasStartedMating = false;
+		m_HasStartedMating = false;
 	}
 
 	public Vector3 DirFromAngle(float _angleInDegrees, bool _isAngleGlobal)
