@@ -1,0 +1,22 @@
+#Creatures
+	*All creatures have DNA* (DNA defines their shape, type and behaviour(they inherit DNA from their parents))
+	All creatures can walk (get speed from DNA)
+	All creatures must eat to live (get eating habit from DNA)
+	All creatures can mate(only with oppesite gender) (get gender from DNA)
+	All creatures can die
+	All creatures can fight (get strength from DNA)
+	
+	/DNA\ (all declared in genes)
+	Some creatures eat specific(Omnivore, Carnivore, Herbivore)
+	Some creatures are more agressive
+	Some creatures are male and some are female
+	Some creatures are stronger than others
+	Some creatures are faster than others
+	Some creatures have a different shape
+	
+	
+#Extra
+	if a creatures move a lot their speed increases (and if their speed exeeds that of the max the max becomes the exeeded value)
+	if a creatures fight a lot their strength increases (and if their strength exeeds that of the max the max becomes the exeeded value)
+	{creatures can live longer based on a calculation (still need to make one)}
+	
